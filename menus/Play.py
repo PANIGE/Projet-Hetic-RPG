@@ -115,6 +115,12 @@ class handler:
 
         glob.Scheduler.AddNow(self.Script)
 
+        self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),Positions.centre,Positions.topRight)
+        self.redLife=pSprite(glob.PixelWhite,vector2(0,0),Positions.centre,Positions.topRight,Color(255,0,0))
+        self.whiteLife.VectorScale(vector2(100,50))
+        self.redLife.VectorScale(vector2(80,30))
+        glob.foregroundSprites.add(self.whiteLife)
+        glob.foregroundSprites.add(self.red)
         
 
 
@@ -145,6 +151,8 @@ class handler:
         self.bgBattleDialog.Fade(1)
         self.heart.Fade(1)
         self.heartHurted.Fade(0)
+        self.whiteLife.fade(0)
+        self.redLife.fade(0)
         self.MoveHeart(0,205)
 
     def MoveHeart(self, x, y):
