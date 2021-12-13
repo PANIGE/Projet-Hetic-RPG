@@ -47,6 +47,9 @@ class handler:
         self.Title = None
         self.AwaitSymbol = None
 
+        self.whiteLife = None
+        self.redLife = None
+
         self.BattleDialog = None
         self.bgBattleDialog = None
 
@@ -113,15 +116,18 @@ class handler:
         self.heart.Scale(0.2)
         self.heartHurted.Scale(0.2)
 
+        
+
+        self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
+        self.redLife=pSprite(glob.PixelWhite,vector2(0,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
+        self.whiteLife.VectorScale(vector2(200,50))
+        self.redLife.VectorScale(vector2(180,30))
+        glob.foregroundSprites.add(self.whiteLife)
+        glob.foregroundSprites.add(self.redLife)
+        
+        #TOUJOURS EN DERNIER
         glob.Scheduler.AddNow(self.Script)
 
-        self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),Positions.centre,Positions.topRight)
-        self.redLife=pSprite(glob.PixelWhite,vector2(0,0),Positions.centre,Positions.topRight,Color(255,0,0))
-        self.whiteLife.VectorScale(vector2(100,50))
-        self.redLife.VectorScale(vector2(80,30))
-        glob.foregroundSprites.add(self.whiteLife)
-        glob.foregroundSprites.add(self.red)
-        
 
 
 
@@ -144,6 +150,8 @@ class handler:
         self.bgBattleDialog.Fade(0)
         self.heart.Fade(0)
         self.heartHurted.Fade(0)
+        self.whiteLife.Fade(0)
+        self.redLife.Fade(0)
 
     def showCombat(self):
         self.isInCombat = True
@@ -151,8 +159,8 @@ class handler:
         self.bgBattleDialog.Fade(1)
         self.heart.Fade(1)
         self.heartHurted.Fade(0)
-        self.whiteLife.fade(0)
-        self.redLife.fade(0)
+        self.whiteLife.Fade(1)
+        self.redLife.Fade(1)
         self.MoveHeart(0,205)
 
     def MoveHeart(self, x, y):
