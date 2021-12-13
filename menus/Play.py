@@ -59,6 +59,8 @@ class handler:
         self.heart = None
         self.heartHurted = None
         self.canTakeDamage = True
+        self.PV=60
+        self.AP=40
 
         self.AttackSprites = []
 
@@ -119,9 +121,9 @@ class handler:
         
 
         self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
-        self.redLife=pSprite(glob.PixelWhite,vector2(0,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
-        self.whiteLife.VectorScale(vector2(200,50))
-        self.redLife.VectorScale(vector2(180,30))
+        self.redLife=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
+        self.whiteLife.VectorScale(vector2(self.PV*11,50))
+        self.redLife.VectorScale(vector2(self.PV*10,30))
         glob.foregroundSprites.add(self.whiteLife)
         glob.foregroundSprites.add(self.redLife)
         
@@ -172,6 +174,9 @@ class handler:
         self.heartHurted.position = vector2(x, y)
         
 
+    def Take_dommage(self,quantity):
+        self.PV-=quantity
+        
     def getHurt(self):
         if self.canTakeDamage:
             glob.Scheduler.AddNow(lambda: self._getHurt())
@@ -352,7 +357,7 @@ class handler:
         """
         Main script, run on another thread to avoid blocking
         """
-        debug = False
+        debug = True
         if debug:
             self.HideInterface()
             self.showCombat()
