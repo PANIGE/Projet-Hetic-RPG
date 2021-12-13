@@ -370,7 +370,7 @@ class handler:
             self.getInput("Vous etes donc Chara Melmou ? (o/n)")
         self.ShowMessage("Narrateur", "Chara Melmou... c'est pas ouf comme nom, mais bon, on choisis pas nos parents")
         self.ShowCharacter("flowey", ["idle.png", "sad.png", "smug.png"], True)
-        glob.AudioManager.PlayMusic("flowey.mp3")
+        #glob.AudioManager.PlayMusic("flowey.mp3")
         self.ShowMessage("Flowey", "Salut !")
         self.ShowMessage("Flowey", "Je suis Flowey !")
         self.Characters["flowey"].setChar("smug.png")
