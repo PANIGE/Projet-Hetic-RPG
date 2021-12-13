@@ -1,0 +1,5 @@
+numpy
+mutagen
+easing-functions
+pygame
+pillow

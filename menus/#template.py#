@@ -1,0 +1,31 @@
+from framework.graphics.pSprite import pSprite
+from menus.overlays.pNotification import Notification
+from framework.graphics.pText import pText
+from framework import glob
+from framework.data import helper
+from framework.data.data import *
+from pygame.locals import *
+import pygame
+from os import path
+import  time
+
+class handler:
+
+
+    def init(self):
+        #Define all variables and initial process, ran only one time on Menu Change
+        pass
+
+
+    def update(self):
+        #Update done every frame for repeated actions
+        pass
+
+    def dispose(self):
+        #Linked with self.disposeTime, this is the task to do before unloading the menu and loading new menu, mostly used to hide all sprites for transition to be fluid
+        pass
+
+
+    def HandleEvents(self, events):
+        #Done each frame just before update
+        pass
