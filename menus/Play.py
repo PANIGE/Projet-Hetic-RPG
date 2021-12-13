@@ -28,7 +28,7 @@ class handler:
 
     isInCombat = False
     PV = 20
-    AP = 20
+    AP = 40
 
     def __init__(self) -> None:
         #Here is to define variable, that are used anywhere, detached from other init for readability reasons
