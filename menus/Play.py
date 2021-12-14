@@ -176,11 +176,11 @@ class handler:
     def healing (self,quantity):
         self.Pv+=quantity
         self.Pv=min(self.MaxPv, self.Pv)
-        self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+        self.redLife.VectorScale(vector2((self.MaxPv/self.Pv)*200,30))
 
     def Take_dommage(self,quantity):
         self.Pv-=quantity
-        self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+        self.redLife.VectorScale(vector2((self.MaxPv/self.Pv)*200,30))
         
     def getHurt(self):
         if self.canTakeDamage:
@@ -189,7 +189,6 @@ class handler:
     def _getHurt(self):
         self.bgBattleDialog.Color(Color(255,0,0))
         self.canTakeDamage = False
-        self.Take_dommage(4)
         self.heart.Fade(0)
         for _ in range(6):
             self.heartHurted.Fade(1)
@@ -198,6 +197,7 @@ class handler:
             self.wait(100)
         self.heart.Fade(1)
         self.canTakeDamage = True
+        self.Take_dommage(4)
         self.bgBattleDialog.Color(Color(255,255,255))
 
 
