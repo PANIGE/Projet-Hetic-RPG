@@ -13,6 +13,7 @@ import numpy
 from random import randint
 from tools import Attacks
 
+
 """
 plan:
     - Trouver un PUTAIN de synopsis
@@ -27,8 +28,6 @@ plan:
 class handler:
 
     isInCombat = False
-    PV = 20
-    AP = 40
 
     def __init__(self) -> None:
         #Here is to define variable, that are used anywhere, detached from other init for readability reasons
@@ -60,6 +59,7 @@ class handler:
         self.heartHurted = None
         self.canTakeDamage = True
         self.PV=20
+        self.MaxPv=20
         self.AP=40
 
         self.AttackSprites = []
@@ -122,8 +122,8 @@ class handler:
 
         self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
         self.redLife=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
-        self.whiteLife.VectorScale(vector2(self.PV*11,50))
-        self.redLife.VectorScale(vector2(self.PV*10,30))
+        self.whiteLife.VectorScale(vector2((self.MaxPv/self.MaxPv)*200+20,50))
+        self.redLife.VectorScale(vector2((self.MaxPv/self.PV)*200,30))
         glob.foregroundSprites.add(self.whiteLife)
         glob.foregroundSprites.add(self.redLife)
         
@@ -173,6 +173,10 @@ class handler:
         self.heart.position = vector2(x, y)
         self.heartHurted.position = vector2(x, y)
         
+    def healing (self,quantity):
+        self.Pv+=quantity
+        self.Pv=min(self.MaxPv, self.Pv)
+        pass
 
     def Take_dommage(self,quantity):
         self.PV-=quantity
@@ -192,6 +196,7 @@ class handler:
             self.wait(100)
         self.heart.Fade(1)
         self.canTakeDamage = True
+        self.Take_dommage(4)
         self.bgBattleDialog.Color(Color(255,255,255))
 
 
