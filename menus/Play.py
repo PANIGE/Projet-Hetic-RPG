@@ -123,7 +123,7 @@ class handler:
         self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
         self.redLife=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
         self.whiteLife.VectorScale(vector2((self.MaxPv/self.MaxPv)*200+20,50))
-        self.redLife.VectorScale(vector2((self.MaxPv/self.Pv)*200,30))
+        self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
         glob.foregroundSprites.add(self.whiteLife)
         glob.foregroundSprites.add(self.redLife)
         
@@ -199,6 +199,8 @@ class handler:
         self.heart.Fade(1)
         self.canTakeDamage = True
         self.bgBattleDialog.Color(Color(255,255,255))
+        if self.Pv <= 0:
+            self.gameOver
 
 
     def wait(self, duration):
@@ -258,6 +260,11 @@ class handler:
         self.DialogTitle.Fade(0)
         self.bgDialogTitle.Fade(0)
 
+    def gameOver(self):
+        self.isAwaiting= True 
+        self.ShowMessage("Narrateur", "Serieux ta perdu contre une fleur mdr.")
+        glob.ChangeMenu(Menus.MainMenu)
+        
     def Cls(self):
         for txt in self.Messages:
             glob.foregroundSprites.remove(txt)
@@ -386,7 +393,6 @@ class handler:
         self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peut !")
         self.showCombat()
         Attacks.first(self.AttackSprites)
-
 
 
 
