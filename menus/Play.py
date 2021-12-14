@@ -183,6 +183,7 @@ class handler:
         self.Pv = max(0, self.Pv)
         self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
         if self.Pv <= 0:
+            self.hideCombat()
             self.gameOver()
         
     def getHurt(self):
@@ -267,6 +268,7 @@ class handler:
         self.isAwaiting= True 
         self.ShowMessage("Narrateur", "Serieux ta perdu contre une fleur mdr.")
         glob.MenuManager.ChangeMenu(Menus.MainMenu)
+        
         
     def Cls(self):
         for txt in self.Messages:
