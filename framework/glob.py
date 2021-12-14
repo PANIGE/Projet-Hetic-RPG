@@ -4,7 +4,7 @@ from framework.graphics.spriteManager import SpriteManager
 from menus.menuManager import MenuManager
 from framework.audio.audioManager import AudioManager as am
 
-Debug = False
+Debug = True
 
 Running = False
 
