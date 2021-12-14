@@ -180,6 +180,7 @@ class handler:
 
     def Take_dommage(self,quantity):
         self.Pv-=quantity
+        self.Pv = max(0, self.Pv)
         self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
         if self.Pv <= 0:
             self.gameOver()
@@ -232,7 +233,8 @@ class handler:
                     
 
     def dispose(self):
-        #Linked with self.disposeTime, this is the task to do before unloading the menu and loading new menu, mostly used to hide all sprites for transition to be fluid
+        for s in glob.foregroundSprites.sprites:
+            s.FadeTo(0, 400)
         pass
 
 
@@ -264,7 +266,7 @@ class handler:
     def gameOver(self):
         self.isAwaiting= True 
         self.ShowMessage("Narrateur", "Serieux ta perdu contre une fleur mdr.")
-        glob.ChangeMenu(Menus.MainMenu)
+        glob.MenuManager.ChangeMenu(Menus.MainMenu)
         
     def Cls(self):
         for txt in self.Messages:
