@@ -59,7 +59,7 @@ class handler:
         self.heart = None
         self.heartHurted = None
         self.canTakeDamage = True
-        self.PV=60
+        self.PV=20
         self.AP=40
 
         self.AttackSprites = []
