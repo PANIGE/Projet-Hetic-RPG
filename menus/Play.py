@@ -58,7 +58,7 @@ class handler:
         self.heart = None
         self.heartHurted = None
         self.canTakeDamage = True
-        self.Pv=20
+        self.Pv=0
         self.MaxPv=20
         self.AP=40
 
@@ -181,6 +181,8 @@ class handler:
     def Take_dommage(self,quantity):
         self.Pv-=quantity
         self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+        if self.Pv <= 0:
+            self.gameOver()
         
     def getHurt(self):
         if self.canTakeDamage:
@@ -199,8 +201,7 @@ class handler:
         self.heart.Fade(1)
         self.canTakeDamage = True
         self.bgBattleDialog.Color(Color(255,255,255))
-        if self.Pv <= 0:
-            self.gameOver
+
 
 
     def wait(self, duration):
