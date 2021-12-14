@@ -185,24 +185,27 @@ class handler:
         if self.Pv <= 0:
             self.hideCombat()
             self.gameOver()
+            return False
+        return True
         
     def getHurt(self):
         if self.canTakeDamage:
-            glob.Scheduler.AddNow(lambda: self._getHurt())
+            glob.Scheduler.AddNow(lambda: self._getHurt(), killable=False)
 
     def _getHurt(self):
         self.bgBattleDialog.Color(Color(255,0,0))
         self.canTakeDamage = False
-        self.Take_dommage(4)
-        self.heart.Fade(0)
-        for _ in range(6):
-            self.heartHurted.Fade(1)
-            self.wait(100)
-            self.heartHurted.Fade(0)
-            self.wait(100)
-        self.heart.Fade(1)
-        self.canTakeDamage = True
-        self.bgBattleDialog.Color(Color(255,255,255))
+        d = self.Take_dommage(4)
+        if d:
+            self.heart.Fade(0)
+            for _ in range(6):
+                self.heartHurted.Fade(1)
+                self.wait(100)
+                self.heartHurted.Fade(0)
+                self.wait(100)
+            self.heart.Fade(1)
+            self.canTakeDamage = True
+            self.bgBattleDialog.Color(Color(255,255,255))
 
 
 
@@ -365,6 +368,11 @@ class handler:
                 s.origin = Positions.bottomCentre
         self.Characters[name] = sprite
         glob.foregroundSprites.add(sprite)
+
+    def RemoveCharacter(self, key):
+        sprite = self.Characters["key"]
+        glob.foregroundSprites.remove(sprite)
+        del self.Characters["key"]
 
     def Script(self):
         """

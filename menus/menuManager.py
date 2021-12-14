@@ -13,6 +13,7 @@ class MenuManager:
         """Handle menu changing, disposing the actual menu """
         if self.activeMenu != None:
             self.activeMenu.dispose()
+            glob.Scheduler.killThreads()
             disposeTime = self.activeMenu.disposeTime
             for sprite in glob.foregroundSprites.sprites:
                 glob.Scheduler.AddDelayed(disposeTime, glob.foregroundSprites.remove, sprite=sprite)
