@@ -58,7 +58,7 @@ class handler:
         self.heart = None
         self.heartHurted = None
         self.canTakeDamage = True
-        self.Pv=0
+        self.Pv=20
         self.MaxPv=20
         self.AP=40
 
