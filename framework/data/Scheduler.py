@@ -15,7 +15,7 @@ class Scheduler:
         self.AddDelayed(0, function, **kwargs)
 
     def AddDelayed(self, wait, function, **kwargs):
-        t = pThread(target=self.__DelayedAsync__, args=(wait, function), kwargs=kwargs, killable=kwargs.get("killable", False))
+        t = pThread(target=self.__DelayedAsync__, args=(wait, function), kwargs=kwargs, killable=kwargs.get("killable", True))
         t.daemon = True
         self.threads.append(t)
         t.start()
@@ -37,7 +37,7 @@ class Scheduler:
 
 class pThread(threading.Thread):
     def __init__(self, *args, **kwargs):
-        self.killable = kwargs.pop("killable", False)
+        self.killable = kwargs.pop("killable", True)
         
         threading.Thread.__init__(self, *args, **kwargs)
         
