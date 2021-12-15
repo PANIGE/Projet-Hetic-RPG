@@ -362,7 +362,7 @@ class handler:
         sprite=CharacterSprite(name, charPos.Center,emots)
         for s in sprite.sprites.values():
             s.Depth = 3
-            s.Scale(1)
+            s.Scale(scale)
             if combat:
                 s.field = Positions.centre
                 s.origin = Positions.bottomCentre
@@ -370,9 +370,9 @@ class handler:
         glob.foregroundSprites.add(sprite)
 
     def RemoveCharacter(self, key):
-        sprite = self.Characters["key"]
+        sprite = self.Characters[key]
         glob.foregroundSprites.remove(sprite)
-        del self.Characters["key"]
+        del self.Characters[key]
 
     def Script(self):
         """
@@ -392,10 +392,10 @@ class handler:
         self.ShowMessage("Narrateur", "Bonjour testeur, bienvenue dans \"LE REGLISSE DE LA VÉRITÉ\".")
         self.ShowMessage("Narrateur","Quel est votre nom ?")
         self.getInput("Entrez votre nom")
-        n = self.getInput("etes vous sur de choisir comme nom Chara Melmou ? (o/n)")
+        n = self.getInput("etes vous sur de choisir ce noms ? (o/n)")
         if n.lower() =="n":
             self.getInput("Très bien quel et votre nom ?")
-            self.getInput("Vous etes donc Chara Melmou ? (o/n)")
+            self.getInput("trés bien etes vous sur ? (o/n)")
         self.ShowMessage("Narrateur", "Chara Melmou... c'est pas ouf comme nom, mais bon, on choisis pas nos parents")
         self.ShowCharacter("flowey", ["idle.png", "sad.png", "smug.png"], True)
         #glob.AudioManager.PlayMusic("flowey.mp3")
@@ -409,6 +409,21 @@ class handler:
         self.showCombat()
         Attacks.first(self.AttackSprites)
         self.hideCombat()
+        self.RemoveCharacter("flowey")
+        self.ShowMessage("Narrateur", "VOUS ETES SERIEUX,IL DES LIMITE A LA REFERENCE")
         self.ShowMessage("Narrateur", "STOOOP")
+        self.ShowMessage("Narrateur", "VOUS ETES SERIEUX,IL Y A DES LIMITE A LA REFERENCE!!!!!!!!!!!")
+        self.ShowMessage("Narrateur", "C'est bon tu prend tes clic et tes clac,et tu sort de la!!!!")
+        self.SwitchBackground("bg_bar.png",500)
+        self.ShowCharacter("haato",["idle.png"],scale=0.6)
+        self.wait(1000)
+        self.ShowMessage("Narrateur", "pu***n encore")
+        self.ShowMessage("Chara Melmou","Caramel mou?")
+        self.ShowMessage("Narrateur","...")
+        self.ShowMessage("Narrateur","Bon ... j'ai comprit j'active un traducteur")
+
+
+
+
 
 
