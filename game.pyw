@@ -41,6 +41,7 @@ if __name__ == "__main__": #avoid script to be runned in another script
         flags = HWSURFACE |  DOUBLEBUF | HWACCEL
 
 
+
     glob.windowManager.width = wd
     glob.windowManager.height = ht
     glob.windowManager.heightScaled = ht / glob.windowManager.getPixelSize()
