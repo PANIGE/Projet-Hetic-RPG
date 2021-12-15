@@ -83,7 +83,7 @@ if __name__ == "__main__": #avoid script to be runned in another script
             #Update frame behind background
             glob.surface.fill((0, 0, 0))
 
-
+            glob.clock.tick(50)
 
             cursor.updateCursorPos()
 

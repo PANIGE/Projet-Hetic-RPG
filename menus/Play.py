@@ -218,13 +218,13 @@ class handler:
             y = self.heart.position.y
             x = self.heart.position.x
             if keys[K_UP]:
-                y -= 1
+                y -= 5
             if keys[K_DOWN]:
-                y += 1
+                y += 5
             if keys[K_RIGHT]:
-                x += 1
+                x += 5
             if keys[K_LEFT]:
-                x -= 1
+                x -= 5
             self.MoveHeart(x, y)
             t = []
             for sp in self.AttackSprites:
@@ -378,12 +378,14 @@ class handler:
         """
         Main script, run on another thread to avoid blocking
         """
-        debug = True
+        debug = False
         if debug:
             self.HideInterface()
             self.showCombat()
             self.wait(1200)
             Attacks.first(self.AttackSprites)
+            self.hideCombat()
+            self.ShowMessage("Narrateur", "STOOOP")
             return
         #Intro (Name selection)
         self.hideCombat()
@@ -406,6 +408,7 @@ class handler:
         self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peut !")
         self.showCombat()
         Attacks.first(self.AttackSprites)
-
+        self.hideCombat()
+        self.ShowMessage("Narrateur", "STOOOP")
 
 
