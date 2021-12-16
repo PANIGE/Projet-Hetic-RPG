@@ -47,6 +47,11 @@ class CharacterSprite:
         for i in self.sprites.values():
             i.MoveTo(vector.x, vector.y, duration, Easing)
 
-    def horiFlip(self):
+    def HoriFlip(self):
         for i in self.sprites.values():
             i.Horiflip()
+
+
+    def VertFlip(self):
+        for i in self.sprites.values():
+            i.Vertflip()
