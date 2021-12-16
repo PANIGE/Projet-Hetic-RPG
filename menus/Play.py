@@ -380,12 +380,46 @@ class handler:
         """
         debug = False
         if debug:
-            self.HideInterface()
-            self.showCombat()
-            self.wait(1200)
-            Attacks.first(self.AttackSprites)
             self.hideCombat()
-            self.ShowMessage("Narrateur", "STOOOP")
+            self.SwitchBackground("bg_bar.png",500)
+            self.ShowCharacter("haato",["idle.png"],scale=0.6)
+            self.wait(2000)
+            self.ShowMessage("Narrateur", "Pu***n encore")
+            self.ShowMessage("Chara Melmou","Caramel mou?")
+            self.ShowMessage("Narrateur","...")
+            self.ShowMessage("Narrateur","Ooooook attendez")
+            glob.AudioManager.PlaySound("clic_souri.mp3")
+            glob.AudioManager.PlaySound("clic_souri.mp3")
+            glob.AudioManager.PlaySound("machine_effect.mp3")
+            self.wait(4200)
+            glob.AudioManager.PlaySound("clic_souri.mp3")
+            self.wait(1000)
+            self.ShowMessage("Narrateur","C'est bon on recommence")
+            self.ShowMessage("Chare Melmou","Je suis Chara Melmou ")
+            self.ShowMessage("Narrateur","C'est bon on peut commencer")
+            self.ShowMessage("Narrateur","Vous êtes Chara Melmou. Vous êtes dans une auberge, après avoir bien manger vous décidez d'aller acheter du réglisse")
+            self.ShowMessage("Chara Melmou","Rééééééégliiiiiiise")
+            self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
+            self.ShowMessage("Narrateur","Vous parter donc acheter dans une boutique")
+            self.SwitchBackground("bg_boutique_inside.jpg",4500)
+            glob.AudioManager.PlaySound("bruit_de_pas.mp3")
+            self.Characters["haato"].MoveTo(vector2(-600,0),4500)
+            self.wait(5500)
+            self.Characters["haato"].VertFlip()
+            self.ShowCharacter("roberu",["roberu.png"],scale=0.6)
+            self.Characters["roberu"].Move(vector2(600,0))
+            self.ShowMessage("Roberu","Boujour je peux vous aider ? ")
+            self.ShowMessage("Narrateur","Vous demander de la reglisse")
+            self.Characters["roberu"].Move(vector2(600,0))
+            self.ShowCharacter("roberu",["roberu_bad.png"],scale=0.6)
+            self.Characters["roberu"].setChar("roberu_bad.png")
+            self.Characters["roberu"].Move(vector2(600,0))
+            self.ShowMessage("Roberu","Désoler on nous a tous voler!!")
+            self.ShowMessage("Chara Melmou","!!!!!")
+            self.Characters["roberu"].setChar("roberu_happy.png")
+            self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
+
+                
             return
         #Intro (Name selection)
         self.hideCombat()
@@ -432,6 +466,33 @@ class handler:
         self.ShowMessage("Narrateur","Vous êtes Chara Melmou. Vous êtes dans une auberge, après avoir bien manger vous décidez d'aller acheter du réglisse")
         self.ShowMessage("Chara Melmou","Rééééééégliiiiiiise")
         self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
+        self.ShowMessage("Narrateur","Vous parter donc en acheter dans une boutique")
+        self.SwitchBackground("bg_boutique_inside.jpg",4500)
+        glob.AudioManager.PlaySound("bruit_de_pas.mp3")
+        self.Characters["haato"].MoveTo(vector2(-600,0),5500)
+        self.wait(5500)
+        self.Characters["haato"].VertFlip()
+        self.ShowCharacter("roberu",["roberu.png"],scale=0.6)
+        self.Characters["roberu"].Move(vector2(600,0))
+        self.ShowMessage("Roberu","Boujour je peux vous aider ? ")
+        self.ShowMessage("Narrateur","Vous demander de la reglisse")
+        self.Characters["roberu"].Move(vector2(600,0))
+        self.ShowCharacter("roberu",["roberu_bad.png"],scale=0.6)
+        self.Characters["roberu"].setChar("roberu_bad.png")
+        self.Characters["roberu"].Move(vector2(600,0))
+        self.ShowMessage("Roberu","Désoler on nous a tous voler!!")
+        self.ShowMessage("Chara Melmou","!!!!!")
+        self.Characters["roberu"].setChar("roberu_happy.png")
+        self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
+
+
+        
+
+
+        
+
+
+        
 
 
 

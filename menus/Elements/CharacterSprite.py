@@ -42,7 +42,7 @@ class CharacterSprite:
     def __onClick__(self):
         return False
 
-    def Move(self, vector:vector2, duration=0, Easing=EaseTypes.linear):
+    def MoveTo(self, vector:vector2, duration=0, Easing=EaseTypes.linear):
         self.position = vector
         for i in self.sprites.values():
             i.MoveTo(vector.x, vector.y, duration, Easing)
