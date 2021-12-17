@@ -378,7 +378,7 @@ class handler:
         """
         Main script, run on another thread to avoid blocking
         """
-        debug = False
+        debug = True
         if debug:
             self.hideCombat()
             self.SwitchBackground("bg_bar.png",500)
@@ -417,6 +417,16 @@ class handler:
             self.ShowMessage("Chara Melmou","!!!!!")
             self.Characters["roberu"].setChar("roberu_happy.png")
             self.ShowMessage("Roberu","Mais si vous voulez j'ai du caramel mou !")
+            self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
+            self.ShowMessage("Roberu","Je sais pas mais cette idiot et partie dans la fôret")
+            self.ShowMessage("Roberu","dans la direction du labyrinthe")
+            self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
+            conteneur=self.getInput("Choissiez-vous de continuer?")
+            while conteneur.lower()!="n":
+                self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
+                self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
+                conteneur=self.getInput("Choissiez-vous de continuer?")
+            self.ShowMessage("Narrateur","Vous partez en direction de la foret")
 
                 
             return
@@ -425,8 +435,8 @@ class handler:
         self.ShowMessage("Narrateur", "Bonjour testeur, bienvenue dans \"LE REGLISSE DE LA VÉRITÉ\".")
         self.ShowMessage("Narrateur","Quel est votre nom ?")
         self.getInput("Entrez votre nom")
-        n = self.getInput("Etes vous sur de choisir ce noms ? (o/n)")
-        if n.lower() =="n":
+        test = self.getInput("Etes vous sur de choisir ce noms ? (o/n)")
+        if test.lower() =="n":
             self.getInput("Très bien quel et votre nom ?")
             self.getInput("Très bien êtes vous sur ? (o/n)")
         self.ShowMessage("Narrateur", "Chara Melmou... c'est pas ouf comme nom, mais bon, on ne choisit pas nos parents")
