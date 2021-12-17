@@ -408,16 +408,15 @@ class handler:
             self.Characters["haato"].VertFlip()
             self.ShowCharacter("roberu",["roberu.png", "roberu_happy.png", "roberu_bad.png"],scale=0.6)
             self.Characters["roberu"].Move(vector2(600,0))
-            self.ShowMessage("Roberu","Boujour je peux vous aider ? ")
+            self.ShowMessage("Roberu","Boujour, je peux vous aider ? ")
             self.ShowMessage("Narrateur","Vous demander de la reglisse")
-            self.Characters["roberu"].Move(vector2(600,0))
             self.ShowCharacter("roberu",["roberu_bad.png"],scale=0.6)
             self.Characters["roberu"].setChar("roberu_bad.png")
             self.Characters["roberu"].Move(vector2(600,0))
-            self.ShowMessage("Roberu","Désoler on nous a tous voler!!")
+            self.ShowMessage("Roberu","Désolé on nous a tout volé!!")
             self.ShowMessage("Chara Melmou","!!!!!")
             self.Characters["roberu"].setChar("roberu_happy.png")
-            self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
+            self.ShowMessage("Roberu","Mais si vous voulez j'ai du caramel mou !")
 
                 
             return
