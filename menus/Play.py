@@ -406,7 +406,7 @@ class handler:
             self.Characters["haato"].MoveTo(vector2(-600,0),4500)
             self.wait(5500)
             self.Characters["haato"].VertFlip()
-            self.ShowCharacter("roberu",["roberu.png"],scale=0.6)
+            self.ShowCharacter("roberu",["roberu.png", "roberu_happy.png", "roberu_bad.png"],scale=0.6)
             self.Characters["roberu"].Move(vector2(600,0))
             self.ShowMessage("Roberu","Boujour je peux vous aider ? ")
             self.ShowMessage("Narrateur","Vous demander de la reglisse")
