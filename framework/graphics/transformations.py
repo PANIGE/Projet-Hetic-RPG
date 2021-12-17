@@ -9,7 +9,6 @@ class Transformation:
         self.thread.start()
 
     def stop(self, all=False):
-        print("request stop")
         if all:
             self.object.AwaitStop = TransformationType.all
         else:
