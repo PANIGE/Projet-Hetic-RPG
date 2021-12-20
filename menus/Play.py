@@ -378,7 +378,7 @@ class handler:
         """
         Main script, run on another thread to avoid blocking
         """
-        debug = True
+        debug = False
         if debug:
             self.hideCombat()
             self.SwitchBackground("bg_bar.png",500)
@@ -412,7 +412,9 @@ class handler:
             self.ShowMessage("Narrateur","Vous demander de la reglisse")
             self.Characters["roberu"].setChar("roberu_bad.png")
             self.ShowMessage("Roberu","Désolé on nous a tout volé!!")
+            glob.AudioManager.PlaySound("nani.mp3")
             self.ShowMessage("Chara Melmou","!!!!!")
+            self.wait(500)
             self.Characters["roberu"].setChar("roberu_happy.png")
             self.ShowMessage("Roberu","Mais si vous voulez j'ai du caramel mou !")
             self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
@@ -420,12 +422,12 @@ class handler:
             self.ShowMessage("Roberu","dans la direction du labyrinthe")
             self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
             conteneur=self.getInput("Choissiez-vous de continuer?")
-            while conteneur.lower()!="n":
+            while conteneur.lower()!="o":
                 self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
                 self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
                 conteneur=self.getInput("Choissiez-vous de continuer?")
             self.ShowMessage("Narrateur","Vous partez en direction de la foret")
-
+            
                 
             return
         #Intro (Name selection)
@@ -487,10 +489,20 @@ class handler:
         self.Characters["roberu"].setChar("roberu_bad.png")
         self.Characters["roberu"].Move(vector2(600,0))
         self.ShowMessage("Roberu","Désoler on nous a tous voler!!")
+        glob.AudioManager.PlaySound("nani.mp3")
         self.ShowMessage("Chara Melmou","!!!!!")
         self.Characters["roberu"].setChar("roberu_happy.png")
         self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
-
+        self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
+        self.ShowMessage("Roberu","Je sais pas mais cette idiot et partie dans la fôret")
+        self.ShowMessage("Roberu","dans la direction du labyrinthe")
+        self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
+        conteneur=self.getInput("Choissiez-vous de continuer?")
+        while conteneur.lower()!="o":
+            self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
+            self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
+            conteneur=self.getInput("Choissiez-vous de continuer?")
+        self.ShowMessage("Narrateur","Vous partez en direction de la foret")
 
         
 

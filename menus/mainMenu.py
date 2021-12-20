@@ -17,7 +17,7 @@ class handler:
         pass
 
     def init(self):
-        title=pText("narrateur",250,FontStyle.regular , vector2(0,30), Positions.topCentre, Positions.topCentre, Color(255,255,255))
+        title=pText("Le réglisse de la veriter",135,FontStyle.regular , vector2(0,30), Positions.topCentre, Positions.topCentre, Color(255,255,255))
         glob.foregroundSprites.add(title)
 
         PlayText = pText("Jouer", 100, FontStyle.bold, vector2(0,-5),Positions.centre, Positions.centre, Color(0,0,0))
@@ -46,7 +46,7 @@ class handler:
         glob.foregroundSprites.add(QuitButton)
 
 
-        bg = pSprite("bg.png", vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
+        bg = pSprite("réglisse_bg.png", vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
         bg.Depth = 2
         bg.Fade(0.3)
         bg.Scale(1920/bg.image.get_width())
