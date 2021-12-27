@@ -378,7 +378,7 @@ class handler:
         """
         Main script, run on another thread to avoid blocking
         """
-        debug = False
+        debug = True
         if debug:
             self.hideCombat()
             self.SwitchBackground("bg_bar.png",500)
@@ -426,6 +426,11 @@ class handler:
                 self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
                 self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
                 conteneur=self.getInput("Choissiez-vous de continuer?")
+            self.Characters["roberu"].setChar("roberu_bad.png")
+            self.ShowMessage("Roberu","vous allez vraiment y aller")
+            self.ShowMessage("Roberu","hmmmmmmm tenez")
+            self.ShowMessage("Narrateur","Vous recevez des potion")
+            self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi")
             self.ShowMessage("Narrateur","Vous partez en direction de la foret")
             
                 
@@ -504,7 +509,7 @@ class handler:
             conteneur=self.getInput("Choissiez-vous de continuer?")
         self.ShowMessage("Narrateur","Vous partez en direction de la foret")
 
-        
+        #kanon de packel bel
 
 
         
