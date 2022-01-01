@@ -46,8 +46,8 @@ class handler:
         self.Title = None
         self.AwaitSymbol = None
 
-        self.whiteLife = None
-        self.redLife = None
+        self.whiteLifeJ = None
+        self.redLifeJ = None
 
         self.BattleDialog = None
         self.bgBattleDialog = None
@@ -120,12 +120,12 @@ class handler:
 
         
 
-        self.whiteLife=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
-        self.redLife=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
-        self.whiteLife.VectorScale(vector2((self.MaxPv/self.MaxPv)*200+20,50))
-        self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
-        glob.foregroundSprites.add(self.whiteLife)
-        glob.foregroundSprites.add(self.redLife)
+        self.whiteLifeJ=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
+        self.redLifeJ=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
+        self.whiteLifeJ.VectorScale(vector2((self.MaxPv/self.MaxPv)*200+20,50))
+        self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+        glob.foregroundSprites.add(self.whiteLifeJ)
+        glob.foregroundSprites.add(self.redLifeJ)
         
         #TOUJOURS EN DERNIER
         glob.Scheduler.AddNow(self.Script)
@@ -152,8 +152,8 @@ class handler:
         self.bgBattleDialog.Fade(0)
         self.heart.Fade(0)
         self.heartHurted.Fade(0)
-        self.whiteLife.Fade(0)
-        self.redLife.Fade(0)
+        self.whiteLifeJ.Fade(0)
+        self.redLifeJ.Fade(0)
 
     def showCombat(self):
         self.isInCombat = True
@@ -161,8 +161,8 @@ class handler:
         self.bgBattleDialog.Fade(1)
         self.heart.Fade(1)
         self.heartHurted.Fade(0)
-        self.whiteLife.Fade(1)
-        self.redLife.Fade(1)
+        self.whiteLifeJ.Fade(1)
+        self.redLifeJ.Fade(1)
         self.MoveHeart(0,205)
 
     def MoveHeart(self, x, y):
@@ -176,12 +176,12 @@ class handler:
     def healing (self,quantity):
         self.Pv+=quantity
         self.Pv=min(self.MaxPv, self.Pv)
-        self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+        self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
 
     def Take_dommage(self,quantity):
         self.Pv-=quantity
         self.Pv = max(0, self.Pv)
-        self.redLife.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+        self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
         if self.Pv <= 0:
             self.hideCombat()
             self.gameOver()
@@ -267,9 +267,9 @@ class handler:
         self.DialogTitle.Fade(0)
         self.bgDialogTitle.Fade(0)
 
-    def gameOver(self):
+    def gameOver(self,message):
         self.isAwaiting= True 
-        self.ShowMessage("Narrateur", "Serieux ta perdu contre une fleur mdr.")
+        self.ShowMessage("Narrateur",message)
         glob.MenuManager.ChangeMenu(Menus.MainMenu)
         
         
@@ -426,6 +426,11 @@ class handler:
                 self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
                 self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
                 conteneur=self.getInput("Choissiez-vous de continuer?")
+            self.Characters["roberu"].setChar("roberu_bad.png")
+            self.ShowMessage("Roberu","vous allez vraiment y aller")
+            self.ShowMessage("Roberu","hmmmmmmm tenez")
+            self.ShowMessage("Narrateur","Vous recevez des potion")
+            self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi")
             self.ShowMessage("Narrateur","Vous partez en direction de la foret")
             
                 
@@ -501,13 +506,16 @@ class handler:
         while conteneur.lower()!="o":
             self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
             self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
-            conteneur=self.getInput("Choissiez-vous de continuer?")
-        self.RemoveCharacter("haato")
-        self.RemoveCharacter("roberu")
+            conteneur=self.getInput("Choissiez-vous de continuer?")            
+
         self.ShowMessage("Narrateur","Vous partez en direction de la foret")
         
-        
-        
+        self.Characters["roberu"].setChar("roberu_bad.png")
+        self.ShowMessage("Roberu","vous allez vraiment y aller")
+        self.ShowMessage("Roberu","hmmmmmmm tenez")
+        self.ShowMessage("Narrateur","Vous recevez des potion")
+        self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi") 
+        self.ShowMessage("Narrateur","Vous partez en direction de la foret")
 
         self.SwitchBackground("japan.jpg",100)
         self.ShowCharacter("haato",["idle.png"],scale=0.6)
@@ -551,7 +559,6 @@ class handler:
         glob.AudioManager.PlaySound("Crissement de pneus 1.mp3")
         self.Characters["haato"].MoveTo(vector2(0,0),1000)       
         self.wait(2000)
-        
         
         self.ShowMessage("???","*Bruit de pas*")
         self.Characters["haato"].VertFlip()
