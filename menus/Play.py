@@ -516,6 +516,8 @@ class handler:
         self.ShowMessage("Narrateur","Vous recevez des potion")
         self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi") 
         self.ShowMessage("Narrateur","Vous partez en direction de la foret")
+        self.RemoveCharacter("haato")
+        self.RemoveCharacter("roberu")
 
         self.SwitchBackground("japan.jpg",100)
         self.ShowCharacter("haato",["idle.png"],scale=0.6)
@@ -539,17 +541,7 @@ class handler:
         self.SwitchBackground("bear.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
         self.Characters["haato"].MoveTo(vector2(10000,0),1000)
-        self.wait(4500)
-        
-        self.SwitchBackground("rat.jpg",100)
-        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
-        self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
-        self.wait(4500)
-        
-        self.SwitchBackground("wii.jpg",100)
-        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
-        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
-        self.wait(6000)       
+        self.wait(4500)      
 
         self.SwitchBackground("forest 2.png",100)
         self.wait(4000)
