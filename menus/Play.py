@@ -60,7 +60,9 @@ class handler:
         self.canTakeDamage = True
         self.Pv=20
         self.MaxPv=20
-        self.AP=40
+        self.PvM=30
+        self.MaxPvM=30
+        
 
         self.AttackSprites = []
 
@@ -118,8 +120,6 @@ class handler:
         self.heart.Scale(0.2)
         self.heartHurted.Scale(0.2)
 
-        
-
         self.whiteLifeJ=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
         self.redLifeJ=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
         self.whiteLifeJ.VectorScale(vector2((self.MaxPv/self.MaxPv)*200+20,50))
@@ -127,6 +127,13 @@ class handler:
         glob.foregroundSprites.add(self.whiteLifeJ)
         glob.foregroundSprites.add(self.redLifeJ)
         
+        self.whiteLifeM=pSprite(glob.PixelWhite,vector2(0,200),SkinSource.local,Positions.centre,Positions.topRight)
+        self.redLifeM=pSprite(glob.PixelWhite,vector2(0,200),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
+        self.whiteLifeM.VectorScale(vector2((self.MaxPvM/self.MaxPvM)*200+20,50))
+        self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
+        glob.foregroundSprites.add(self.whiteLifeM)
+        glob.foregroundSprites.add(self.redLifeM)
+
         #TOUJOURS EN DERNIER
         glob.Scheduler.AddNow(self.Script)
 
@@ -154,6 +161,8 @@ class handler:
         self.heartHurted.Fade(0)
         self.whiteLifeJ.Fade(0)
         self.redLifeJ.Fade(0)
+        self.whiteLifeM.Fade(0)
+        self.redLifeM.Fade(0)
 
     def showCombat(self):
         self.isInCombat = True
@@ -163,6 +172,8 @@ class handler:
         self.heartHurted.Fade(0)
         self.whiteLifeJ.Fade(1)
         self.redLifeJ.Fade(1)
+        self.whiteLifeM.Fade(1)
+        self.redLifeM.Fade(1)
         self.MoveHeart(0,205)
 
     def MoveHeart(self, x, y):
