@@ -127,8 +127,8 @@ class handler:
         glob.foregroundSprites.add(self.whiteLifeJ)
         glob.foregroundSprites.add(self.redLifeJ)
         
-        self.whiteLifeM=pSprite(glob.PixelWhite,vector2(0,200),SkinSource.local,Positions.centre,Positions.topRight)
-        self.redLifeM=pSprite(glob.PixelWhite,vector2(0,200),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
+        self.whiteLifeM=pSprite(glob.PixelWhite,vector2(450,0),SkinSource.local,Positions.centre,Positions.topRight)
+        self.redLifeM=pSprite(glob.PixelWhite,vector2(440,10),SkinSource.local,Positions.centre,Positions.topRight,Color(0,0,255))
         self.whiteLifeM.VectorScale(vector2((self.MaxPvM/self.MaxPvM)*200+20,50))
         self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
         glob.foregroundSprites.add(self.whiteLifeM)
