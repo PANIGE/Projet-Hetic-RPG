@@ -14,22 +14,22 @@ from random import randint
 import math
 
 def first(lis):
-    p1 = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
-    p1.VectorScale(vector2(10,10))
-    p1.Depth = -5
-    p1.position = vector2(-260,-20)
-    p1.angularMove(45, 800, 4500, EaseTypes.easeOut)
-    glob.foregroundSprites.add(p1)
-    lis.append(p1)
+    pixel1 = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
+    pixel1.VectorScale(vector2(10,10))
+    pixel1.Depth = -5
+    pixel1.position = vector2(-260,-20)
+    pixel1.angularMove(45, 800, 4500, EaseTypes.easeOut)
+    glob.foregroundSprites.add(pixel1)
+    lis.append(pixel1)
     time.sleep(3)
 
-    p2 = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
-    p2.VectorScale(vector2(10,10))
-    p2.Depth = -5
-    p2.position = vector2(260,-20)
-    p2.angularMove(135, 800, 4500, EaseTypes.easeOut)
-    glob.foregroundSprites.add(p2)
-    lis.append(p2)
+    pixel2 = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
+    pixel2.VectorScale(vector2(10,10))
+    pixel2.Depth = -5
+    pixel2.position = vector2(260,-20)
+    pixel2.angularMove(135, 800, 4500, EaseTypes.easeOut)
+    glob.foregroundSprites.add(pixel2)
+    lis.append(pixel2)
     time.sleep(3)
 
     for i in range(4):
