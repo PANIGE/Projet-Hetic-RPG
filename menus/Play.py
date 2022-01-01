@@ -144,7 +144,7 @@ class handler:
             bg.Fade(0)
             bg.FadeTo(1, duration)
             glob.backgroundSprites.add(bg)
-        
+                   
 
     def hideCombat(self):
         self.isInCombat = False
@@ -494,7 +494,7 @@ class handler:
         self.Characters["roberu"].setChar("roberu_happy.png")
         self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
         self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
-        self.ShowMessage("Roberu","Je sais pas mais cette idiot et partie dans la fôret")
+        self.ShowMessage("Roberu","Je sais pas mais cette idiot est partie dans la fôret")
         self.ShowMessage("Roberu","dans la direction du labyrinthe")
         self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
         conteneur=self.getInput("Choissiez-vous de continuer?")
@@ -502,13 +502,77 @@ class handler:
             self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
             self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
             conteneur=self.getInput("Choissiez-vous de continuer?")
+        self.RemoveCharacter("haato")
+        self.RemoveCharacter("roberu")
         self.ShowMessage("Narrateur","Vous partez en direction de la foret")
-
+        
+        
         
 
-
+        self.SwitchBackground("japan.jpg",100)
+        self.ShowCharacter("haato",["idle.png"],scale=0.6)
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")  
+        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.ShowMessage("Narrateur","DE L'AUTRE COTE !!!")
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
+        self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
+        self.wait(4500)
         
+        self.SwitchBackground("New_York.jpg",100)
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
+        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.wait(4500)
+        
+        self.SwitchBackground("egypt.jpg",100)
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
+        self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
+        self.wait(4500)
+        
+        self.SwitchBackground("bear.jpg",100)
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
+        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.wait(4500)
+        
+        self.SwitchBackground("rat.jpg",100)
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
+        self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
+        self.wait(4500)
+        
+        self.SwitchBackground("wii.jpg",100)
+        glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
+        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.wait(6000)       
 
+        self.SwitchBackground("forest 2.png",100)
+        self.wait(4000)
+        
+        self.ShowMessage("Narrateur","STOP!!!")
+        self.ShowMessage("Chara Melmou","?!!")
+        glob.AudioManager.PlaySound("Crissement de pneus 1.mp3")
+        self.Characters["haato"].MoveTo(vector2(0,0),1000)       
+        self.wait(2000)
+        
+        
+        self.ShowMessage("???","*Bruit de pas*")
+        self.Characters["haato"].VertFlip()
+        self.wait(1000)        
+        self.Characters["haato"].VertFlip() 
+        self.wait(1000)       
+        self.Characters["haato"].VertFlip()
+        self.wait(1000)
+        self.Characters["haato"].MoveTo(vector2(0,-10000),1000)
+        self.RemoveCharacter("haato") 
+        self.wait(1000)
+        self.ShowMessage("Chara Melmou","Qui... est Là !?")
+        self.wait(3000)        
+        self.SwitchBackground("forest 1.jpg",4500)
+        self.wait(4500) 
+        self.ShowMessage("???","Je suis *personnage secondaire* mon but est de t'aider à obtenir ce que tu cherche")
+        self.ShowMessage("personnage secondaire","Tu peux me fare confiance, suis moi")
+        self.ShowMessage("Narrateur","Chara Melmou ne peux pas lui faire confiance")
+        self.ShowMessage("Chara Melmou","Hhhmmmm...")
+        
+        
 
         
 
