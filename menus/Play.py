@@ -537,50 +537,158 @@ class handler:
         self.ShowMessage("Narrateur","DE L'AUTRE COTE !!!")
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
         self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
-        self.wait(4500)
+        self.wait(2500)
         
         self.SwitchBackground("New_York.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
         self.Characters["haato"].MoveTo(vector2(10000,0),1000)
-        self.wait(4500)
+        self.wait(2500)
         
         self.SwitchBackground("egypt.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
         self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
-        self.wait(4500)
+        self.wait(2500)
         
         self.SwitchBackground("bear.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
         self.Characters["haato"].MoveTo(vector2(10000,0),1000)
-        self.wait(4500)      
+        self.wait(2500)      
 
         self.SwitchBackground("forest 2.png",100)
-        self.wait(4000)
+        self.wait(2000)
         
         self.ShowMessage("Narrateur","STOP!!!")
         self.ShowMessage("Chara Melmou","?!!")
         glob.AudioManager.PlaySound("Crissement de pneus 1.mp3")
         self.Characters["haato"].MoveTo(vector2(0,0),1000)       
         self.wait(2000)
+        glob.AudioManager.PlaySound("DIO.mp3")
         
         self.ShowMessage("???","*Bruit de pas*")
         self.Characters["haato"].VertFlip()
-        self.wait(1000)        
+        self.wait(1000)
         self.Characters["haato"].VertFlip() 
-        self.wait(1000)       
+        self.wait(1000)
         self.Characters["haato"].VertFlip()
         self.wait(1000)
-        self.Characters["haato"].MoveTo(vector2(0,-10000),1000)
-        self.RemoveCharacter("haato") 
+        self.Characters["haato"].MoveTo(vector2(-600,0),1000)
         self.wait(1000)
-        self.ShowMessage("Chara Melmou","Qui... est Là !?")
-        self.wait(3000)        
+        self.ShowMessage("Chara Melmou","Qui... est Là !?")  
         self.SwitchBackground("forest 1.jpg",4500)
         self.wait(4500) 
-        self.ShowMessage("???","Je suis *personnage secondaire* mon but est de t'aider à obtenir ce que tu cherche")
-        self.ShowMessage("personnage secondaire","Tu peux me fare confiance, suis moi")
-        self.ShowMessage("Narrateur","Chara Melmou ne peux pas lui faire confiance")
+        self.ShowMessage("???","Je suis personnage secondaire et mon but est de faire avancer le scénario")
+        self.ShowMessage("personnage secondaire"," Je peux t'aider à obtenir ce que tu cherche. Tu peux me fare confiance, suis moi !")
+        self.ShowMessage("Narrateur","Chara Melmou ne pouvais LOGIQUEMENT pas lui faire confiance")
+        self.wait(1000)
         self.ShowMessage("Chara Melmou","Hhhmmmm...")
+        glob.AudioManager.PlaySound("reflexion.mp3")
+        self.wait(12000)
+        self.wait(2000)
+        self.ShowMessage("personnage secondaire"," Je te propose de faire un marché, tu élimine quelqu'un pour moi et en échange je te donnerais de quoi t'aider à obtennir le réglisse que tu convoite")
+        self.wait(2000)
+        self.ShowMessage("Chara Melmou","OK !")
+        self.ShowMessage("Narrateur","Quel abruti...")
+        self.ShowMessage("personajsegondèr"," ravi de l'entendre, en passant tu peux m'appeler Anne, c'est comme cela que les amis que je n'ai pas m'appellent !")
+        self.ShowMessage("Anne","Bon pour commencer la personne que tu cherche se trouve *au sommet de la montagne*, mais pour y accéder tu devras passer dans son donjon")
+        self.ShowMessage("Anne","le donjon est interminable, et de ce fait je vais de donner un raccourci")
+        self.ShowMessage("Anne","tu aurras 3 ennemis à battre dont...")
+        self.wait(2000)
+        self.ShowMessage("Narrateur","réveille TOI !!!")
+        glob.AudioManager.PlaySound("gifle.mp3")
+        self.wait(1000)
+        self.ShowMessage("Chara Melmou","Aïe !!")
+        self.ShowMessage("Chara Melmou","pourquoi tu m'a frappé !!? je ne dormais pas c'est mes yeux qui sont comme ça")
+        self.ShowMessage("Narrateur","oui. je sais.")
+        self.ShowMessage("Chara Melmou","?..")
+        self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
+        self.Characters["haato"].MoveTo(vector2(2000,0),2000)
+        self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
+        self.SwitchBackground("dungeon",100)
+        self.wait(2000)
+        
+        self.Characters["haato"].MoveTo(vector2(2000,2000),500)
+        self.Characters["haato"].MoveTo(vector2(-2000,2000),500)
+        self.Characters["haato"].MoveTo(vector2(-2000,0),500)
+        glob.AudioManager.PlaySound("Crissement de pneus 1.mp3")
+        self.Characters["haato"].MoveTo(vector2(-600,0),1000)
+        
+        self.ShowMessage("Anne","Je t'ai tout dit maintenant tu est prêt.")
+        """explication de l'inventaire + potions"""
+        
+        self.ShowMessage("Chara Melmou","Allons y !!")
+        """self.SwitchBackground("une heure plus tard",100)"""
+        """glob.AudioManager.PlaySound("one hour later.mp3")"""
+        
+        
+        
+        """ COMBAT 1 """
+        
+        
+        """self.SwitchBackground("étage donjon 1",100)"""
+        self.ShowMessage("Narrateur","vous rencontrez un ennemie")
+        self.ShowMessage("Narrateur","j'espère que tu vas y passer...")
+        self.wait(4500)
+        
+        """introduction de l'ennemie ("rick astley" (meme))"""
+        """phase combat"""
+        
+        self.ShowMessage("Narrateur","c'est quoi ce bordel pourquoi les ennemies sont si nul...")
+        self.ShowMessage("Chara Melmou","Victoire !!")
+        self.ShowMessage("Anne","je savais que tu en serais capable.")
+        self.ShowMessage("Anne","Maintenant, avançons !")
+        self.wait(4500)
+        
+        
+        """ COMBAT 2 """
+        
+        
+        """self.SwitchBackground("deux heures plus tard",100)"""
+        """glob.AudioManager.PlaySound("two hours later.mp3")"""
+        
+        """self.SwitchBackground("étage donjon 2",100)"""
+        self.ShowMessage("Narrateur","vous rencontrez un ennemie")
+        self.ShowMessage("Narrateur","j'espère vraiment que tu vas y passer cette fois ci...")
+        self.wait(4500)
+        
+        self.ShowMessage("Narrateur","Non mais serieusement c'est quoi ce truc...")
+        
+        """introduction de l'ennemie ("freddie mercury" (meme))"""
+        """phase combat"""
+        
+        glob.AudioManager.PlaySound("mama.mp3")
+        self.ShowMessage("Narrateur","mais c'est qu'il va la fermer !!!")
+        glob.AudioManager.PlaySound("gifle.mp3")
+        glob.AudioManager.PlaySound("gifle.mp3")
+        self.wait(2500)
+        self.ShowMessage("Chara Melmou","A moi le réglisse !!")
+        self.ShowMessage("Anne","Tiens un petit cadeau !")
+        
+        self.ShowMessage("Narrateur","Vous obtenez une arme")
+        """Ajout arme dans l'inventaire"""
+        
+        self.ShowMessage("Chara Melmou","merci Anne")
+        self.ShowMessage("Anne","Continuons !")
+        self.wait(4500)
+        
+        
+        
+        """ COMBAT 3 """
+        
+        
+        """self.SwitchBackground("une eternité plus tard",100)"""
+        """glob.AudioManager.PlaySound("one eternity later.mp3")"""
+        
+        """self.SwitchBackground("étage donjon 3",100)"""
+        
+        self.ShowMessage("Narrateur","vous rencontrez un ennemie")
+        
+        self.ShowMessage("Anne","Voici la personne que je voulais que tu élimine, fais attention il est dangereux !!")
+        
+        """introduction de l'ennemie ("shrek" (meme))"""
+        """phase combat"""
+        
+        
+        
         
         
 
