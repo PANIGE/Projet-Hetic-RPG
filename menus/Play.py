@@ -602,15 +602,11 @@ class handler:
         self.ShowMessage("Chara Melmou","?..")
         self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
         self.Characters["haato"].MoveTo(vector2(2000,0),2000)
-        self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
-        self.SwitchBackground("dungeon",100)
-        self.wait(2000)
+        self.RemoveCharacter("haato")
         
-        self.Characters["haato"].MoveTo(vector2(2000,2000),500)
-        self.Characters["haato"].MoveTo(vector2(-2000,2000),500)
-        self.Characters["haato"].MoveTo(vector2(-2000,0),500)
-        glob.AudioManager.PlaySound("Crissement de pneus 1.mp3")
-        self.Characters["haato"].MoveTo(vector2(-600,0),1000)
+        self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
+        self.SwitchBackground("dungeon",4500)
+        self.wait(2000)
         
         self.ShowMessage("Anne","Je t'ai tout dit maintenant tu est prêt.")
         """explication de l'inventaire + potions"""
