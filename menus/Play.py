@@ -605,7 +605,7 @@ class handler:
         self.RemoveCharacter("haato")
         
         self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
-        self.SwitchBackground("dungeon",4500)
+        self.SwitchBackground("dungeon.jpg",4500)
         self.wait(2000)
         
         self.ShowMessage("Anne","Je t'ai tout dit maintenant tu est prêt.")
