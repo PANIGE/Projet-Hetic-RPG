@@ -278,9 +278,9 @@ class handler:
         self.DialogTitle.Fade(0)
         self.bgDialogTitle.Fade(0)
 
-    def gameOver(self,message):
+    def gameOver(self):
         self.isAwaiting= True 
-        self.ShowMessage("Narrateur",message)
+        self.ShowMessage("Narrateur","franchement bravo")
         glob.MenuManager.ChangeMenu(Menus.MainMenu)
         
         
