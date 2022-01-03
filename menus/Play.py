@@ -464,6 +464,9 @@ class handler:
         self.ShowMessage("Flowey", "Flowey la fleur !")
         self.Characters["flowey"].setChar("idle.png")
         self.ShowMessage("Flowey", "Je vais t'apprendre comment on joue à ce jeu")
+        self.ShowMessage("Flowey", "Utilise les fléches directionnel de ton clavier pour esquiver mais attaque")
+        self.ShowMessage("Flowey", "la barre rouge qui apparaitra a ta gauche represente tes point de vie (PV)")
+        self.ShowMessage("Flowey", "la bleu qui sera a ta droite represente des point de vie du monstre adverse(PVM)")
         self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")
         self.showCombat()
         Attacks.first(self.AttackSprites)
@@ -472,6 +475,7 @@ class handler:
         self.ShowMessage("Narrateur", "STOOOP")
         self.ShowMessage("Narrateur", "VOUS ETES SERIEUX, IL Y A DES LIMITE A LA REFERENCE!!!!!!!!!!!")
         self.ShowMessage("Narrateur", "C'est bon tu prends tes clics et tes clacs,et tu sors de là!!!!")
+        #fin de l'intro et du tutoriel
         self.SwitchBackground("bg_bar.png",500)
         self.ShowCharacter("haato",["idle.png"],scale=0.6)
         self.wait(2000)
