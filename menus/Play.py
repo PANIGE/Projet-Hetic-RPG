@@ -142,7 +142,7 @@ class handler:
         self.AttackButton.borderBounds(10)
         self.AttackButton.onHover(self.AttackButton.FadeColorTo, color=Color(255,255,0), duration=300)
         self.AttackButton.onHoverLost( self.AttackButton.FadeColorTo, color=Color(255,255,255), duration=300)
-        self.AttackButton.onClick(self.Take_dommage_M(4))
+        self.AttackButton.onClick(lambda: self.Take_dommage_M(4))
         self.AttackButton.Depth = 0
         glob.foregroundSprites.add(self.AttackButton) 
 
