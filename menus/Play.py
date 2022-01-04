@@ -134,6 +134,18 @@ class handler:
         glob.foregroundSprites.add(self.whiteLifeM)
         glob.foregroundSprites.add(self.redLifeM)
 
+        self.Text = pText("attaquer", 25, FontStyle.bold, vector2(355,100),Positions.centre, Positions.centre, Color(0,0,0))
+        self.Text.Depth = -1
+        glob.foregroundSprites.add(self.Text)
+        self.AttackButton = pSprite(glob.PixelWhite, vector2(350,100), SkinSource.local, Positions.centre, Positions.centre)
+        self.AttackButton.VectorScale(vector2(230,50))
+        self.AttackButton.borderBounds(10)
+        self.AttackButton.onHover(self.AttackButton.FadeColorTo, color=Color(255,255,0), duration=300)
+        self.AttackButton.onHoverLost( self.AttackButton.FadeColorTo, color=Color(255,255,255), duration=300)
+        self.AttackButton.onClick(lambda: self.Take_dommage_M(4))
+        self.AttackButton.Depth = 0
+        glob.foregroundSprites.add(self.AttackButton) 
+
         #TOUJOURS EN DERNIER
         glob.Scheduler.AddNow(self.Script)
 
@@ -470,14 +482,14 @@ class handler:
         self.Characters["flowey"].setChar("smug.png")
         self.ShowMessage("Flowey", "Flowey la fleur !")
         self.Characters["flowey"].setChar("idle.png")
-        """self.ShowMessage("Flowey", "Je vais t'apprendre comment on joue à ce jeu")
+        self.ShowMessage("Flowey", "Je vais t'apprendre comment on joue à ce jeu")
         self.ShowMessage("Flowey", "Utilise les fléches directionnel de ton clavier pour esquiver mais attaque")
         self.ShowMessage("Flowey", "la barre rouge qui apparaitra a ta gauche represente tes point de vie (PV)")
         self.ShowMessage("Flowey", "la bleu qui sera a ta droite represente des point de vie du monstre adverse(PVM)")
-        self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")"""
+        self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")
         self.showCombat()
         
-        """self.ShowMessage("Flowey", "ATENTION, droite !!")
+        self.ShowMessage("Flowey", "ATENTION, droite !!")
         self.wait(500)
         Attacks.Attack_basic_1(self.AttackSprites)
         self.ShowMessage("Flowey", "ATENTION, gauche !!")
@@ -486,7 +498,7 @@ class handler:
         self.ShowMessage("Flowey", "Prépare toi !")
         self.wait(500)
         Attacks.attack_m2(self.AttackSprites)
-        # self.Attackbutton.fade(1)"""
+        # self.Attackbutton.fade(1)
         self.ShowMessage("Flowey", "Assez jouer !!")
         Attacks.attack_cercle(self.AttackSprites)
         
@@ -501,7 +513,7 @@ class handler:
         self.wait(2000)
         self.ShowMessage("Narrateur", "Pu***n encore")
         self.ShowMessage("Chara Melmou","Caramel mou?")
-        """self.ShowMessage("Narrateur","...")
+        self.ShowMessage("Narrateur","...")
         self.ShowMessage("Narrateur","Ooooook attendez")
         glob.AudioManager.PlaySound("clic_souri.mp3")
         glob.AudioManager.PlaySound("clic_souri.mp3")
@@ -640,7 +652,7 @@ class handler:
         self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
         self.sortie("haato")
         glob.AudioManager.Stop()
-        """""
+    
         
         self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
         self.SwitchBackground("dungeon.jpg",4500)
