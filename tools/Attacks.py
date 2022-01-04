@@ -33,6 +33,8 @@ def Attack_basic_2(lis):
     glob.foregroundSprites.add(pixel2)
     lis.append(pixel2)
     time.sleep(3)
+    lis.clear()
+    lis.clear()
 
 def attack_retour(lis):
     for i in range(4):
@@ -48,6 +50,7 @@ def attack_retour(lis):
             lis.append(p)
         time.sleep(1)
     time.sleep(5)
+    lis.clear()
 
 
 def attack_cercle(lis):
@@ -142,19 +145,49 @@ def attack_m2_verical(lis):
         glob.foregroundSprites.add(pixel7)
         lis.append(pixel7)
 
-def attack_m2(lis):
-        pixel6= pSprite(glob.PixelWhite, vector2(100,-200), SkinSource.local, Positions.centre, Positions.centre)
+def attack_m2_horizontal(lis):
+        pixel6= pSprite(glob.PixelWhite, vector2(200,-200), SkinSource.local, Positions.centre, Positions.centre)
         pixel6.VectorScale(vector2(20,10))
         pixel6.Depth = -5
         pixel6.position = vector2(0,330)
-        pixel6.angularMove(180,1500,10000,EaseTypes.easeOut)
+        pixel6.angularMove(180,1500,5000,EaseTypes.easeOut)
         glob.foregroundSprites.add(pixel6)
         lis.append(pixel6)
 
-        pixel7= pSprite(glob.PixelWhite, vector2(-100,300), SkinSource.local, Positions.centre, Positions.centre)
+        pixel7= pSprite(glob.PixelWhite, vector2(-600,300), SkinSource.local, Positions.centre, Positions.centre)
         pixel7.VectorScale(vector2(20,10))
         pixel7.Depth = -5
-        pixel7.position = vector2(0,-25)
-        pixel7.angularMove(180,1500,10000,EaseTypes.easeOut)
+        pixel7.position = vector2(300,-25)
+        pixel7.angularMove(-360,1500,5000,EaseTypes.easeOut)
         glob.foregroundSprites.add(pixel7)
         lis.append(pixel7)
+
+def attack_m2(lis):
+        pixel7= pSprite(glob.PixelWhite, vector2(200,-200), SkinSource.local, Positions.centre, Positions.centre)
+        pixel7.VectorScale(vector2(20,10))
+        pixel7.Depth = -5
+        pixel7.position = vector2(0,330)
+        pixel7.angularMove(180,400,5000,EaseTypes.easeOut)
+        glob.Scheduler.AddDelayed( 8000 - 1000, pixel7.angularMove, angle=-90, dis= 500, duration=2000, easing=EaseTypes.easeInOut)
+        time.sleep(0.05)
+        glob.Scheduler.AddDelayed( 8000 - 1000, pixel7.angularMove, angle=90, dis= 500, duration=2000, easing=EaseTypes.easeInOut)
+        time.sleep(0.05)
+        glob.Scheduler.AddDelayed(7000 - 1000, pixel7.angularMove, angle=15, dis= 5500, duration=5000, easing=EaseTypes.easeInOut)
+        time.sleep(0.05)
+        glob.foregroundSprites.add(pixel7)
+        lis.append(pixel7)
+
+        pixel8= pSprite(glob.PixelWhite, vector2(-600,300), SkinSource.local, Positions.centre, Positions.centre)
+        pixel8.VectorScale(vector2(20,10))
+        pixel8.Depth = -5
+        pixel8.position = vector2(303,-25)
+        pixel8.angularMove(-360,500,5000,EaseTypes.easeOut)
+        glob.Scheduler.AddDelayed( 8000 - 1000, pixel8.angularMove, angle=90, dis= 500, duration=2000, easing=EaseTypes.easeInOut)
+        time.sleep(0.05)
+        glob.Scheduler.AddDelayed(7000 - 1000, pixel8.angularMove, angle=215, dis= 5500, duration=5000, easing=EaseTypes.easeInOut)
+        time.sleep(0.05)
+        glob.foregroundSprites.add(pixel8)
+        lis.append(pixel8)
+
+
+        
