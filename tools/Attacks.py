@@ -14,7 +14,7 @@ from random import randint
 import math
 
 
-def first(lis):
+def Attack_basic_1(lis):
     pixel1 = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
     pixel1.VectorScale(vector2(10,10))
     pixel1.Depth = -5
@@ -24,6 +24,7 @@ def first(lis):
     lis.append(pixel1)
     time.sleep(3)
 
+def Attack_basic_2(lis):
     pixel2 = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
     pixel2.VectorScale(vector2(10,10))
     pixel2.Depth = -5
@@ -33,15 +34,7 @@ def first(lis):
     lis.append(pixel2)
     time.sleep(3)
 
-    PlayButton = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
-    PlayButton.VectorScale(vector2(500,200))
-    PlayButton.borderBounds(20)
-    PlayButton.onHover(PlayButton.FadeColorTo, color=Color(255,0,0), duration=300)
-    PlayButton.onHoverLost(PlayButton.FadeColorTo, color=Color(255,255,255), duration=300)
-    PlayButton.onClick("a")
-    PlayButton.Depth = 0
-    glob.foregroundSprites.add(PlayButton)
-
+def attack_retour(lis):
     for i in range(4):
         for o in range(3):
             p = pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
@@ -56,9 +49,9 @@ def first(lis):
         time.sleep(1)
     time.sleep(5)
 
+
+def attack_cercle(lis):
     pl = []
-
-
     t = (time.time()*1000) + 1500
     for i in range(72):
         angle = i*5
@@ -97,53 +90,71 @@ def first(lis):
         glob.foregroundSprites.remove(p)
     lis.clear()
 
-class attacks:
-    def __init__(self) -> None:
-        self.Pv=20
-        self.MaxPv=20
-        self.PvM=30
-        self.MaxPvM=30
+def attack_m2_croix(lis):
+     pixel3= pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
+     pixel3.VectorScale(vector2(20,10))
+     pixel3.Depth = -5
+     pixel3.position = vector2(0,-20)
+     pixel3.angularMove(90,850,2000,EaseTypes.easeOut)
+     glob.foregroundSprites.add(pixel3)
+     lis.append(pixel3)
 
-    def init(self):
-        self.whiteLifeJ=pSprite(glob.PixelWhite,vector2(-250,0),SkinSource.local,Positions.centre,Positions.topRight)
-        self.redLifeJ=pSprite(glob.PixelWhite,vector2(-260,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,0,0))
-        self.whiteLifeJ.VectorScale(vector2((self.MaxPv/self.MaxPv)*200+20,50))
-        self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
-        glob.foregroundSprites.add(self.whiteLifeJ)
-        glob.foregroundSprites.add(self.redLifeJ)
-        
-        self.whiteLifeM=pSprite(glob.PixelWhite,vector2(450,0),SkinSource.local,Positions.centre,Positions.topRight)
-        self.redLifeM=pSprite(glob.PixelWhite,vector2(440,10),SkinSource.local,Positions.centre,Positions.topRight,Color(0,0,255))
-        self.whiteLifeM.VectorScale(vector2((self.MaxPvM/self.MaxPvM)*200+20,50))
-        self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
-        glob.foregroundSprites.add(self.whiteLifeM)
-        glob.foregroundSprites.add(self.redLifeM)
+     pixel4= pSprite(glob.PixelWhite, vector2(200,0), SkinSource.local, Positions.centre, Positions.centre)
+     pixel4.VectorScale(vector2(20,10))
+     pixel4.Depth = -5
+     pixel4.position = vector2(0,200)
+     pixel4.angularMove(180,1500,2000,EaseTypes.easeOut)
+     glob.foregroundSprites.add(pixel4)
+     lis.append(pixel4)
+     
+def attack_m2_droite(lis):
+        pixel5= pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
+        pixel5.VectorScale(vector2(10,20))
+        pixel5.Depth = -5
+        pixel5.position = vector2(0,200)
+        pixel5.angularMove(90,1500,8000,EaseTypes.easeOut)
+        glob.foregroundSprites.add(pixel5)
+        lis.append(pixel5)
 
-        glob.Scheduler.AddNow(self.Script)
+        pixel5= pSprite(glob.PixelWhite, vector2(0,0), SkinSource.local, Positions.centre, Positions.centre)
+        pixel5.VectorScale(vector2(10,20))
+        pixel5.Depth = -5
+        pixel5.position = vector2(0,200)
+        pixel5.angularMove(-90,1500,8000,EaseTypes.easeOut)
+        glob.foregroundSprites.add(pixel5)
+        lis.append(pixel5)
+        time.sleep(500)
 
-    def healing (self,quantity):
-        self.Pv+=quantity
-        self.Pv=min(self.MaxPv, self.Pv)
-        self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
+def attack_m2_verical(lis):
+        pixel6= pSprite(glob.PixelWhite, vector2(100,-200), SkinSource.local, Positions.centre, Positions.centre)
+        pixel6.VectorScale(vector2(20,10))
+        pixel6.Depth = -5
+        pixel6.position = vector2(0,100)
+        pixel6.angularMove(90,1500,8000,EaseTypes.easeOut)
+        glob.foregroundSprites.add(pixel6)
+        lis.append(pixel6)
 
-    def Take_dommage(self,quantity):
-        self.Pv-=quantity
-        self.Pv = max(0, self.Pv)
-        self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
-        if self.Pv <= 0:
-            self.hideCombat()
-            self.gameOver()
-            return False
-        return True
+        pixel7= pSprite(glob.PixelWhite, vector2(-100,200), SkinSource.local, Positions.centre, Positions.centre)
+        pixel7.VectorScale(vector2(20,10))
+        pixel7.Depth = -5
+        pixel7.position = vector2(0,100)
+        pixel7.angularMove(-90,1500,8000,EaseTypes.easeOut)
+        glob.foregroundSprites.add(pixel7)
+        lis.append(pixel7)
 
-    def Take_dommage_M(self,quantity):
-        self.PvM-=quantity
-        self.PvM= max(0, self.Pv)
-        self.redLifeJ.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
-        if self.PvM <= 0:
-            self.hideCombat()
+def attack_m2(lis):
+        pixel6= pSprite(glob.PixelWhite, vector2(100,-200), SkinSource.local, Positions.centre, Positions.centre)
+        pixel6.VectorScale(vector2(20,10))
+        pixel6.Depth = -5
+        pixel6.position = vector2(0,330)
+        pixel6.angularMove(180,1500,10000,EaseTypes.easeOut)
+        glob.foregroundSprites.add(pixel6)
+        lis.append(pixel6)
 
-            return False
-        return True
-
- 
+        pixel7= pSprite(glob.PixelWhite, vector2(-100,300), SkinSource.local, Positions.centre, Positions.centre)
+        pixel7.VectorScale(vector2(20,10))
+        pixel7.Depth = -5
+        pixel7.position = vector2(0,-25)
+        pixel7.angularMove(180,1500,10000,EaseTypes.easeOut)
+        glob.foregroundSprites.add(pixel7)
+        lis.append(pixel7)

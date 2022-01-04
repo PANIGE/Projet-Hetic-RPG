@@ -128,18 +128,26 @@ class handler:
         glob.foregroundSprites.add(self.redLifeJ)
         
         self.whiteLifeM=pSprite(glob.PixelWhite,vector2(450,0),SkinSource.local,Positions.centre,Positions.topRight)
-        self.redLifeM=pSprite(glob.PixelWhite,vector2(440,10),SkinSource.local,Positions.centre,Positions.topRight,Color(0,0,255))
+        self.redLifeM=pSprite(glob.PixelWhite,vector2(440,10),SkinSource.local,Positions.centre,Positions.topRight,Color(255,255,0))
         self.whiteLifeM.VectorScale(vector2((self.MaxPvM/self.MaxPvM)*200+20,50))
         self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
         glob.foregroundSprites.add(self.whiteLifeM)
         glob.foregroundSprites.add(self.redLifeM)
 
+        self.Text = pText("attaquer", 25, FontStyle.bold, vector2(355,100),Positions.centre, Positions.centre, Color(0,0,0))
+        self.Text.Depth = -1
+        glob.foregroundSprites.add(self.Text)
+        self.AttackButton = pSprite(glob.PixelWhite, vector2(350,100), SkinSource.local, Positions.centre, Positions.centre)
+        self.AttackButton.VectorScale(vector2(230,50))
+        self.AttackButton.borderBounds(10)
+        self.AttackButton.onHover(self.AttackButton.FadeColorTo, color=Color(255,255,0), duration=300)
+        self.AttackButton.onHoverLost( self.AttackButton.FadeColorTo, color=Color(255,255,255), duration=300)
+        self.AttackButton.onClick(self.Take_dommage_M(4))
+        self.AttackButton.Depth = 0
+        glob.foregroundSprites.add(self.AttackButton) 
+
         #TOUJOURS EN DERNIER
         glob.Scheduler.AddNow(self.Script)
-
-
-
-
 
     def SwitchBackground(self, path, duration):
         if len(glob.backgroundSprites.sprites) > 0:
@@ -198,7 +206,24 @@ class handler:
             self.gameOver()
             return False
         return True
+
+    def Take_dommage_M(self,quantity):
+        self.PvM-=quantity
+        self.PvM = max(0, self.Pv)
+        self.redLifeJ.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
+        if self.PvM<= 0:
+            self.hideCombat()
+            return False
+        return True
+
+    def wait_button(self):
+        self.isAwaiting=True
+       # self.AttackButton.OnClick(lambda: self.isAwaiting = False)
+        while self.isAwaiting:
+            self.wait(10)
+        pass
         
+
     def getHurt(self):
         if self.canTakeDamage:
             glob.Scheduler.AddNow(lambda: self._getHurt(), killable=False)
@@ -217,8 +242,6 @@ class handler:
             self.heart.Fade(1)
             self.canTakeDamage = True
             self.bgBattleDialog.Color(Color(255,255,255))
-
-
 
     def wait(self, duration):
         time.sleep(duration/1000)
@@ -389,64 +412,29 @@ class handler:
         """
         Main script, run on another thread to avoid blocking
         """
-        debug = False
+        debug = True
         if debug:
             self.hideCombat()
-            self.SwitchBackground("bg_bar.png",500)
-            self.ShowCharacter("haato",["idle.png"],scale=0.6)
-            self.wait(2000)
-            self.ShowMessage("Narrateur", "Pu***n encore")
-            self.ShowMessage("Chara Melmou","Caramel mou?")
-            self.ShowMessage("Narrateur","...")
-            self.ShowMessage("Narrateur","Ooooook attendez")
-            glob.AudioManager.PlaySound("clic_souri.mp3")
-            glob.AudioManager.PlaySound("clic_souri.mp3")
-            glob.AudioManager.PlaySound("machine_effect.mp3")
-            self.wait(4200)
-            glob.AudioManager.PlaySound("clic_souri.mp3")
-            self.wait(1000)
-            self.ShowMessage("Narrateur","C'est bon on recommence")
-            self.ShowMessage("Chare Melmou","Je suis Chara Melmou ")
-            self.ShowMessage("Narrateur","C'est bon on peut commencer")
-            self.ShowMessage("Narrateur","Vous êtes Chara Melmou. Vous êtes dans une auberge, après avoir bien manger vous décidez d'aller acheter du réglisse")
-            self.ShowMessage("Chara Melmou","Rééééééégliiiiiiise")
-            self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
-            self.ShowMessage("Narrateur","Vous parter donc acheter dans une boutique")
-            self.SwitchBackground("bg_boutique_inside.jpg",4500)
-            glob.AudioManager.PlaySound("bruit_de_pas.mp3")
-            self.Characters["haato"].MoveTo(vector2(-600,0),4500)
-            self.wait(5500)
-            self.Characters["haato"].VertFlip()
-            self.ShowCharacter("roberu",["roberu.png", "roberu_happy.png", "roberu_bad.png"],scale=0.6)
-            self.Characters["roberu"].Move(vector2(600,0))
-            self.ShowMessage("Roberu","Boujour, je peux vous aider ? ")
-            self.ShowMessage("Narrateur","Vous demander de la reglisse")
-            self.Characters["roberu"].setChar("roberu_bad.png")
-            self.ShowMessage("Roberu","Désolé on nous a tout volé!!")
-            glob.AudioManager.PlaySound("nani.mp3")
-            self.ShowMessage("Chara Melmou","!!!!!")
-            self.wait(500)
-            self.Characters["roberu"].setChar("roberu_happy.png")
-            self.ShowMessage("Roberu","Mais si vous voulez j'ai du caramel mou !")
-            self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
-            self.ShowMessage("Roberu","Je sais pas mais cette idiot et partie dans la fôret")
-            self.ShowMessage("Roberu","dans la direction du labyrinthe")
-            self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
-            conteneur=self.getInput("Choissiez-vous de continuer?")
-            while conteneur.lower()!="o":
-                self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
-                self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
-                conteneur=self.getInput("Choissiez-vous de continuer?")
-            self.Characters["roberu"].setChar("roberu_bad.png")
-            self.ShowMessage("Roberu","vous allez vraiment y aller")
-            self.ShowMessage("Roberu","hmmmmmmm tenez")
-            self.ShowMessage("Narrateur","Vous recevez des potion")
-            self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi")
-            self.ShowMessage("Narrateur","Vous partez en direction de la foret")
-            
+            self.ShowCharacter("flowey", ["idle.png", "sad.png", "smug.png"], True)
+            #glob.AudioManager.PlayMusic("flowey.mp3")
+            self.ShowMessage("Flowey", "Salut !")
+            self.ShowMessage("Flowey", "Je suis Flowey !")
+            self.Characters["flowey"].setChar("smug.png")
+            self.ShowMessage("Flowey", "Flowey la fleur !")
+            self.Characters["flowey"].setChar("idle.png")
+            self.ShowMessage("Flowey", "Je vais t'apprendre comment on joue à ce jeu")
+            self.ShowMessage("Flowey", "Utilise les fléches directionnel de ton clavier pour esquiver mais attaque")
+            self.ShowMessage("Flowey", "la barre rouge qui apparaitra a ta gauche represente tes point de vie (PV)")
+            self.ShowMessage("Flowey", "la bleu qui sera a ta droite represente des point de vie du monstre adverse (PVM)")
+            self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")
+            self.showCombat()
+            Attacks.attack_m2(self.AttackSprites)
+            self.wait(6000)
+           
                 
             return
         #Intro (Name selection)
+        self.AttackButton.Fade(0)
         self.hideCombat()
         self.ShowMessage("Narrateur", "Bonjour testeur, bienvenue dans \"LE REGLISSE DE LA VÉRITÉ\".")
         self.ShowMessage("Narrateur","Quel est votre nom ?")
@@ -466,10 +454,19 @@ class handler:
         self.ShowMessage("Flowey", "Je vais t'apprendre comment on joue à ce jeu")
         self.ShowMessage("Flowey", "Utilise les fléches directionnel de ton clavier pour esquiver mais attaque")
         self.ShowMessage("Flowey", "la barre rouge qui apparaitra a ta gauche represente tes point de vie (PV)")
-        self.ShowMessage("Flowey", "la bleu qui sera a ta droite represente des point de vie du monstre adverse(PVM)")
+        self.ShowMessage("Flowey", "la bleu qui sera a ta droite represente des point de vie du monstre adverse (PVM)")
         self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")
         self.showCombat()
-        Attacks.first(self.AttackSprites)
+        Attacks.Attack_basic_1(self.AttackSprites)
+        self.ShowMessage("Flowey", "Ok on recommence")
+        Attacks.Attack_basic_2(self.AttackSprites)
+        self.ShowMessage("Flowey", "bien attaque moi maintenant")
+        self.ShowMessage("Flowey", "Tu vois ce bouton a droite il te permet de m'attaquer")
+        self.AttackButton.Fade(1)
+        Attacks.attack_retour(self.AttackSprites)
+        self.ShowMessage("narrateur","ta survécu pas mal")
+        self.ShowMessage("narrateur","monton d'un niveaux")
+        Attacks.attack_cercle(self.AttackSprites)
         self.hideCombat()
         self.RemoveCharacter("flowey")
         self.ShowMessage("Narrateur", "STOOOP")
