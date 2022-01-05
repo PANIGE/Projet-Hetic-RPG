@@ -418,6 +418,14 @@ class handler:
         self.HideInterface()
         return d
 
+    # permet de sortir un personnage de l'écran sans faire de demi-tour.
+    def sortie(self,perso):
+        self.Characters[perso].MoveTo(vector2(2000,0),2000)
+        self.Characters[perso].MoveTo(vector2(2000,2000),200)
+        self.Characters[perso].MoveTo(vector2(-2000,2000),200)
+        self.Characters[perso].MoveTo(vector2(-2000,0),200)
+        
+
     def UnlockInput(self, text):
         """Allow inputs from the player to the in game terminal
 
@@ -508,7 +516,6 @@ class handler:
             self.ShowMessage("Roberu","Mais si vous voulez j'ai du caramel mou !")
             self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
             self.ShowMessage("Roberu","Je sais pas mais cette idiot et partie dans la fôret")
-            self.ShowMessage("Roberu","dans la direction du labyrinthe")
             self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
             conteneur=self.getInput("Choissiez-vous de continuer?")
             while conteneur.lower()!="o":
@@ -520,6 +527,7 @@ class handler:
             self.ShowMessage("Roberu","hmmmmmmm tenez")
             self.ShowMessage("Narrateur","Vous recevez des potion")
             self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi")
+            glob.AudioManager.Stop()
             self.ShowMessage("Narrateur","Vous partez en direction de la foret")
             
                 
@@ -613,7 +621,12 @@ class handler:
         self.ShowMessage("Chara Melmou","Rééééééégliiiiiiise")
         self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
         self.ShowMessage("Narrateur","Vous parter donc en acheter dans une boutique")
+<<<<<<< Updated upstream
         glob.AudioManager.Stop()
+=======
+        
+        glob.AudioManager.PlayMusic("DSI.mp3")
+>>>>>>> Stashed changes
         self.SwitchBackground("bg_boutique_inside.jpg",4500)
         glob.AudioManager.PlayMusic("DSI.mp3")
         glob.AudioManager.PlaySound("bruit_de_pas.mp3")
@@ -631,10 +644,17 @@ class handler:
         glob.AudioManager.PlaySound("nani.mp3")
         self.ShowMessage("Chara Melmou","!!!!!")
         self.Characters["roberu"].setChar("roberu_happy.png")
+<<<<<<< Updated upstream
         self.ShowMessage("Roberu","Mais si vous vouler j'ai du caramel mou")
         self.ShowMessage("Narrateur","Vous demandez qui a volé la reglisse")
         self.ShowMessage("Roberu","Je sais pas mais cet idiot est partie dans la fôret")
         self.ShowMessage("Roberu","vers le donjon")
+=======
+        self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
+        self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
+        self.ShowMessage("Roberu","Je sais pas mais cette idiot est partie dans la fôret")
+        self.ShowMessage("Roberu","Il est partie en direction d'un donjon")
+>>>>>>> Stashed changes
         self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
         conteneur=self.getInput("Choissiez-vous de continuer?")
         while conteneur.lower()!="o":
@@ -691,6 +711,10 @@ class handler:
         self.Characters["haato"].MoveTo(vector2(0,0),1000)       
         glob.AudioManager.Stop()
         self.wait(2000)
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
         glob.AudioManager.PlayMusic("DIO.mp3")
         
         self.ShowMessage("???","*Bruit de pas*")
@@ -729,45 +753,88 @@ class handler:
         self.ShowMessage("Anne","Bon pour commencer la personne que tu cherche se trouve *au sommet de la montagne*, mais pour y accéder tu devras passer dans son donjon")
         self.ShowMessage("Anne","le donjon est interminable, et de ce fait je vais de donner un raccourci")
         self.ShowMessage("Anne","tu aurras 3 ennemis à battre dont...")
+<<<<<<< Updated upstream
         self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
         self.sortie_anne()
         self.sortie("haato")
         glob.AudioManager.Stop()
     
         # Arrivé devant le donjon.
+=======
+        self.wait(2000)
+        self.ShowMessage("Narrateur","réveille TOI !!!")
+        self.wait(500)
+        glob.AudioManager.PlaySound("gifle.mp3")
+        self.wait(1000)
+        self.ShowMessage("Chara Melmou","Aïe !!")
+        self.ShowMessage("Chara Melmou","pourquoi tu m'a frappé !!? je ne dormais pas c'est mes yeux qui sont comme ça")
+        self.ShowMessage("Narrateur","oui. je sais.")
+        self.ShowMessage("Chara Melmou","?..")
+        self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
+        self.sortie("haato")
+        
+        glob.AudioManager.Stop()
+>>>>>>> Stashed changes
         
         self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
         self.SwitchBackground("dungeon.jpg",4500)
         self.wait(4500)
         
+<<<<<<< Updated upstream
         self.Characters["haato"].MoveTo(vector2(-600,0),2000)
         self.Characters["Anne"].MoveTo(vector2(600,300),1000)
         self.ShowMessage("Anne","Je t'ai tout dit maintenant tu est prêt.")
         # explication de l'inventaire + potions
+=======
+        
+        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        self.ShowMessage("Anne","Je t'ai tout dit maintenant tu est prêt.")
+        """explication de l'inventaire + potions"""
+>>>>>>> Stashed changes
         self.wait(2000)
         
         self.ShowMessage("Chara Melmou","Allons y !!")
         self.sortie("haato")
+<<<<<<< Updated upstream
         self.sortie_anne()
+=======
         
         self.SwitchBackground("1h.jpg",100)
         glob.AudioManager.PlaySound("1h.mp3")
         self.wait(4000)
         
+        
+        """ COMBAT 1 """
+>>>>>>> Stashed changes
+        
+        self.SwitchBackground("1h.jpg",100)
+        glob.AudioManager.PlaySound("1h.mp3")
+        self.wait(4000)
+        
+<<<<<<< Updated upstream
         # phase du Dragon
 
+=======
+>>>>>>> Stashed changes
         self.SwitchBackground("room 1.jpg",2000)
         self.wait(2000)
         self.Characters["haato"].MoveTo(vector2(-600,0),2000)
         self.ShowMessage("Chara Melmou","je suis fatigué on peut faire une pose ?")
+<<<<<<< Updated upstream
         self.Characters["Anne"].MoveTo(vector2(600,300),1000)
         self.ShowMessage("Anne","NON.")
         self.ShowMessage("Narrateur","Dans tes rêves.")
         self.sortie_anne()
+=======
+        self.ShowMessage("Anne","NON.")
+        self.ShowMessage("Narrateur","Dans tes rêves.")
+        
+>>>>>>> Stashed changes
         self.ShowMessage("Narrateur","vous rencontrez un ennemie")
         self.ShowMessage("Narrateur","j'espère que tu vas y passer..")
         self.wait(4500)
         
+<<<<<<< Updated upstream
         self.ShowCharacter("Mr dragon",["dragon_1.png", "dragon_2.png", "dragon_3.png","walter.png"],scale=0.5)
         self.Characters["Mr dragon"].MoveTo(vector2(600,0),200)
         self.wait(1500)
@@ -785,12 +852,24 @@ class handler:
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
         self.RemoveCharacter("Mr dragon")
         
+=======
+        self.ShowMessage("???","Vous n'avez rien à faire ici, partez !!! ou vous périrez..")
+        self.ShowMessage("Chara Melmou","Vous vous appelez comment ?")
+        self.ShowMessage("???","Mr pour vous ce sera Mr dragon")
+        self.ShowMessage("Mr dragon","vous ètes ici pour nous nuire à moi et mon maître ?!")
+        self.ShowMessage("Chara Melmou","NON ! pas du t..")
+        self.ShowMessage("Narrateur","Si. exactemet")
+        self.ShowMessage("Mr dragon","vous ne me laissez plus le choix!")
+        self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
+    
+>>>>>>> Stashed changes
         """phase combat"""
         #vself.showCombat
         
         self.PvM = 10
         self.Pv = 30
         
+<<<<<<< Updated upstream
         self.showCombat()
         self.ShowCharacter("Face", ["Dface.png"], True)
         
@@ -841,6 +920,10 @@ class handler:
         self.ShowMessage("Mr dragon","Je vous remercie de m'avoir délivrer du sort que l'on m'a jeté, pour me racheter je vous accompagne dans votre quête")
         self.ShowMessage("Walter","Je m'appelle Walter je t'aiderais à accomplir ton but")
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
+=======
+        self.ShowMessage("Narrateur","c'est quoi ce bordel pourquoi les ennemies sont si nul..")
+        self.ShowMessage("Mr dragon","Je vous remercie de m'avoir délivrer du sort que l'on m'a jeté, pour me racheter je vous accompagne dans votre quête")
+>>>>>>> Stashed changes
         self.ShowMessage("Chara Melmou","Victoire !!")
         self.ShowMessage("Anne","je savais que tu en serais capable.")
         self.ShowMessage("Anne","Maintenant, avançons !")
@@ -849,6 +932,7 @@ class handler:
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
         self.wait(4500)
         
+<<<<<<< Updated upstream
         
         """ COMBAT final du donjon """
         
@@ -944,6 +1028,37 @@ class handler:
         
         self.hideCombat()
         
+=======
+        """ COMBAT 3 """
+        
+        self.SwitchBackground("eternity.jpg",100)
+        glob.AudioManager.PlaySound("eternity.mp3")
+        self.wait(4000)
+        
+        self.SwitchBackground("room 2.jpg",4000)
+        self.wait(4000)
+        
+        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        
+        self.ShowMessage("Narrateur","vous rencontrez un ennemie")
+        self.ShowCharacter("shrek",["shrek 1.png"],scale=1)
+        self.Characters["shrek"].MoveTo(vector2(600,1500),1000)
+        
+        self.ShowMessage("???","l'ane qu'est ce que tu fais içi !?")
+        self.ShowMessage("Anne","Voici la personne que je voulais que tu élimine, fais attention il est dangereux !!")
+        self.ShowMessage("???","l'aaaane...? c'est de moi que tu parles !?")
+        self.ShowMessage("Anne","NON. je parle à une pomme")
+        self.wait(2000)
+        self.ShowMessage("shrek","je ne laisserais  AUCUN d'entre vous sortir d'ici vivant!!!")
+        self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
+
+        """phase combat"""
+>>>>>>> Stashed changes
+        
+        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        self.ShowMessage("Anne","Chara Melmou, je coulais te remercier de m'avoir permis de me venger, il a bouffer toute ma famille le fumier, sans toi rien n'aurais été possible.")
+        self.ShowMessage("Chara Melmou","(ne l'écoute pas), il est où le réglisse ?")
+        self.ShowMessage("Anne","...")
         
         
         self.Characters["haato"].MoveTo(vector2(-600,0),2000)
