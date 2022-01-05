@@ -243,6 +243,7 @@ class handler:
             self.Characters[perso].MoveTo(vector2(2000,2000),200)
             self.Characters[perso].MoveTo(vector2(-2000,2000),200)
             self.Characters[perso].MoveTo(vector2(-2000,0),200)
+            
         
     def sortie_anne(self):
         self.Characters["Anne"].setChar("man 2.png")
@@ -478,7 +479,7 @@ class handler:
             self.hideCombat()
             self.SwitchBackground("bg_bar.png",500)
             glob.AudioManager.PlayMusic("tavern.mp3")
-            self.ShowCharacter("haato",["idle.png"],scale=0.6)
+            self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
             self.wait(2000)
             self.ShowMessage("Narrateur", "Pu***n encore")
             self.ShowMessage("Chara Melmou","Caramel mou?")
@@ -498,9 +499,10 @@ class handler:
             self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
             self.ShowMessage("Narrateur","Vous parter donc acheter dans une boutique")
             glob.AudioManager.Stop()
+            glob.AudioManager.PlaySound("DSI.mp3")
             self.SwitchBackground("bg_boutique_inside.jpg",4500)
             glob.AudioManager.PlaySound("bruit_de_pas.mp3")
-            self.Characters["haato"].MoveTo(vector2(-600,0),4500)
+            self.Characters["haato"].MoveTo(vector2(-600,400),4500)
             self.wait(5500)
             self.Characters["haato"].VertFlip()
             self.ShowCharacter("roberu",["roberu.png", "roberu_happy.png", "roberu_bad.png"],scale=0.6)
@@ -585,10 +587,14 @@ class handler:
         self.wait(8000)
         self.hideCombat()
         self.ShowMessage("Flowey", "A toi de m'attaquer")
+        
         self.showCombat()
+        
         self.AttackButton.Fade(1)
+        self.Text.Fade(1)
         self.Wait_Button()
         self.AttackButton.Fade(0)
+        self.Text.Fade(0)
 
         self.ShowMessage("Flowey", "Assez jouer !!")
         # self.Attackbutton.fade(0)
@@ -602,18 +608,22 @@ class handler:
         #fin de l'intro et du tutoriel
         self.SwitchBackground("bg_bar.png",500)
         glob.AudioManager.PlayMusic("tavern.mp3")
-        self.ShowCharacter("haato",["idle.png"],scale=0.6)
+        self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
         self.wait(2000)
+        
         self.ShowMessage("Narrateur", "Pu***n encore")
         self.ShowMessage("Chara Melmou","Caramel mou?")
         self.ShowMessage("Narrateur","...")
         self.ShowMessage("Narrateur","Ooooook attendez")
+        
         glob.AudioManager.PlaySound("clic_souri.mp3")
         glob.AudioManager.PlaySound("clic_souri.mp3")
         glob.AudioManager.PlaySound("machine_effect.mp3")
+        
         self.wait(4200)
         glob.AudioManager.PlaySound("clic_souri.mp3")
         self.wait(1000)
+        
         self.ShowMessage("Narrateur","C'est bon on recommence")
         self.ShowMessage("Chare Melmou","Je suis Chara Melmou ")
         self.ShowMessage("Narrateur","C'est bon on peut commencer")
@@ -626,9 +636,11 @@ class handler:
         self.SwitchBackground("bg_boutique_inside.jpg",4500)
         glob.AudioManager.PlayMusic("DSI.mp3")
         glob.AudioManager.PlaySound("bruit_de_pas.mp3")
-        self.Characters["haato"].MoveTo(vector2(-600,0),5500)
+        
+        self.Characters["haato"].MoveTo(vector2(-600,400),5500)
         self.wait(5500)
         self.Characters["haato"].VertFlip()
+        
         self.ShowCharacter("roberu",["roberu.png", "roberu_happy.png", "roberu_bad.png"],scale=0.6)
         self.Characters["roberu"].Move(vector2(600,0))
         self.ShowMessage("Roberu","Boujour je peux vous aider ? ")
@@ -637,17 +649,15 @@ class handler:
         self.Characters["roberu"].setChar("roberu_bad.png")
         self.Characters["roberu"].Move(vector2(600,0))
         self.ShowMessage("Roberu","Désolé on nous a tous volé!!")
+        self.Characters["haato"].setChar("reflexion 1.png")
         glob.AudioManager.PlaySound("nani.mp3")
         self.ShowMessage("Chara Melmou","!!!!!")
         self.Characters["roberu"].setChar("roberu_happy.png")
         self.ShowMessage("Roberu","Mais si vous vouler j'ai du caramel mou")
         self.ShowMessage("Narrateur","Vous demandez qui a volé la reglisse")
         self.ShowMessage("Roberu","Je sais pas mais cet idiot est partie dans la fôret")
-        self.ShowMessage("Roberu","vers le donjon")
-        self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
-        self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
-        self.ShowMessage("Roberu","Je sais pas mais cette idiot est partie dans la fôret")
-        self.ShowMessage("Roberu","Il est partie en direction d'un donjon")
+        self.ShowMessage("Roberu","Je l'ignore mais, Il est partie en direction d'un donjon")
+        self.Characters["haato"].setChar("happy.png")
         self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
         conteneur=self.getInput("Choissiez-vous de continuer?")
         while conteneur.lower()!="o":
@@ -670,29 +680,29 @@ class handler:
 
         self.SwitchBackground("japan.jpg",100)
         glob.AudioManager.PlayMusic("MexicanMusic.mp3")
-        self.ShowCharacter("haato",["idle.png"],scale=0.6)
+        self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","angry.png","sad.png"],scale=1.4)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")  
-        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(10000,400),1000)
         self.ShowMessage("Narrateur","DE L'AUTRE COTÉ !!!")
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
-        self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-10000,400),1000)
         self.wait(3500)
         
         self.SwitchBackground("New_York.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
-        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(10000,400),1000)
         self.wait(2500)
         
         self.SwitchBackground("egypt.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
-        self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-10000,400),1000)
         self.wait(2500)
         
         self.SwitchBackground("bear.jpg",100)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
-        self.Characters["haato"].MoveTo(vector2(10000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(10000,400),1000)
         self.wait(2500)
-        glob.AudioManager.Stop() 
+        glob.AudioManager.Stop()
 
         self.SwitchBackground("forest 2.png",100)
         glob.AudioManager.PlayMusic("Forest.mp3")
@@ -701,7 +711,7 @@ class handler:
         self.ShowMessage("Narrateur","STOP!!!")
         self.ShowMessage("Chara Melmou","?!!")
         glob.AudioManager.PlaySound("Crissement de pneus 1.mp3")
-        self.Characters["haato"].MoveTo(vector2(0,0),1000)       
+        self.Characters["haato"].MoveTo(vector2(0,400),1000)       
         glob.AudioManager.Stop()
         self.wait(2000)
         
@@ -714,7 +724,7 @@ class handler:
         self.wait(1000)
         self.Characters["haato"].VertFlip()
         self.wait(1000)
-        self.Characters["haato"].MoveTo(vector2(-600,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-600,400),1000)
         self.wait(1000)
         self.ShowMessage("Chara Melmou","Qui... est Là !?")  
         self.SwitchBackground("forest 1.jpg",4500)
@@ -724,11 +734,31 @@ class handler:
         self.ShowMessage("???","Je suis personnage secondaire et mon but est de faire avancer le scénario")
         self.ShowMessage("personnage secondaire"," Je peux t'aider à obtenir ce que tu cherche. Tu peux me fare confiance, suis moi !")
         self.ShowMessage("Narrateur","Chara Melmou ne pouvais LOGIQUEMENT pas lui faire confiance")
+        
         self.wait(1000)
+        
         self.ShowMessage("Chara Melmou","Hhhmmmm...")
+        
         glob.AudioManager.PlaySound("reflexion.mp3")
-        self.wait(12000)
+        
+        self.wait(874)
+        self.Characters["haato"].setChar("reflexion 2.png")
+        self.wait(3550)
+        self.Characters["haato"].setChar("reflexion 3.png")
+        self.wait(624)
+        self.Characters["haato"].setChar("reflexion 4.png")
+        self.wait(791)
+        self.Characters["haato"].setChar("reflexion 5.png")
+        self.wait(437)
+        self.Characters["haato"].setChar("reflexion 6.png")
+        self.wait(148)
+        self.Characters["haato"].setChar("reflexion 5.png")
+        self.wait(376)
+        self.Characters["haato"].setChar("angry.png")
+        
+        
         self.wait(2000)
+        
         self.ShowMessage("personnage secondaire"," Je te propose de faire un marché, tu élimine quelqu'un pour moi et en échange je te donnerais de quoi t'aider à obtennir le réglisse que tu convoite")
         self.wait(2000)
         
@@ -737,17 +767,24 @@ class handler:
         
         # nouvel allié 
         
+        self.Characters["haato"].setChar("happy.png")
         self.ShowMessage("Chara Melmou","OK !")
         self.ShowMessage("Narrateur","Quel abruti...")
         self.ShowMessage("personajsegondèr"," ravi de l'entendre, en passant tu peux m'appeler Anne, c'est comme cela que les amis que je n'ai pas m'appellent !")
         self.ShowMessage("Anne","Bon pour commencer la personne que tu cherche se trouve *au sommet de la montagne*, mais pour y accéder tu devras passer dans son donjon")
         self.ShowMessage("Anne","le donjon est interminable, et de ce fait je vais de donner un raccourci")
-        self.ShowMessage("Anne","tu aurras 3 ennemis à battre dont...")
+        self.ShowMessage("Anne","tu aurras 2 ennemis à battre dont...")
+        
         self.wait(2000)
+        
         self.ShowMessage("Narrateur","réveille TOI !!!")
+        
         self.wait(500)
+        
         glob.AudioManager.PlaySound("gifle.mp3")
+        
         self.wait(1000)
+        
         self.ShowMessage("Chara Melmou","Aïe !!")
         self.ShowMessage("Chara Melmou","pourquoi tu m'a frappé !!? je ne dormais pas c'est mes yeux qui sont comme ça")
         self.ShowMessage("Narrateur","oui. je sais.")
@@ -759,13 +796,15 @@ class handler:
         glob.AudioManager.Stop()
         
         self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
+        
         self.SwitchBackground("dungeon.jpg",4500)
+        
         self.wait(4500)
         
         
-        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        self.Characters["haato"].MoveTo(vector2(-600,400),2000)
         self.ShowMessage("Anne","Je t'ai tout dit maintenant tu est prêt.")
-        """explication de l'inventaire + potions"""
+        # "explication de l'inventaire + potions
         self.wait(2000)
         
         self.ShowMessage("Chara Melmou","Allons y !!")
@@ -776,15 +815,12 @@ class handler:
         self.wait(4000)
         
         
-        """ COMBAT 1 """
+        # ""COMBAT 1 
         
-        self.SwitchBackground("1h.jpg",100)
-        glob.AudioManager.PlaySound("1h.mp3")
-        self.wait(4000)
         
         self.SwitchBackground("room 1.jpg",2000)
         self.wait(2000)
-        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        self.Characters["haato"].MoveTo(vector2(-600,400),2000)
         self.ShowMessage("Chara Melmou","je suis fatigué on peut faire une pose ?")
         self.Characters["Anne"].MoveTo(vector2(600,300),1000)
         self.ShowMessage("Anne","NON.")
@@ -807,11 +843,11 @@ class handler:
         self.ShowMessage("Narrateur","Si. exactemet")
         self.Characters["Mr dragon"].setChar("dragon_3.png")
         self.ShowMessage("Mr dragon","vous ne me laissez plus le choix!")
-        self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-2000,400),1000)
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
         self.RemoveCharacter("Mr dragon")
         
-        """phase combat"""
+        # ""phase combat
         #vself.showCombat
         
         self.PvM = 10
@@ -841,8 +877,10 @@ class handler:
             self.wait(500)
             
             self.AttackButton.Fade(1)
+            self.Text.Fade(1)
             self.Wait_Button()
             self.AttackButton.Fade(0)
+            self.Text.Fade(0)
             
             self.hideCombat()
             self.ShowMessage("Mr dragon","A mon tour.")
@@ -854,12 +892,13 @@ class handler:
             Attacks.Attack_basic_2(self.AttackSprites)
         
         self.RemoveCharacter("Face")
+        self.AttackButton.Fade(0)
         self.hideCombat()
         
         # victoire du combat, + nouveau compagnon
         
         
-        self.Characters["haato"].MoveTo(vector2(-600,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-600,400),1000)
         self.ShowCharacter("Mr dragon",["walter.png"],scale=0.8)
         self.Characters["Mr dragon"].MoveTo(vector2(600,0),1000)
         self.ShowMessage("Narrateur","c'est quoi ce bordel pourquoi les ennemies sont si nul..")
@@ -871,11 +910,11 @@ class handler:
         self.ShowMessage("Anne","je savais que tu en serais capable.")
         self.ShowMessage("Anne","Maintenant, avançons !")
         self.Characters["Anne"].MoveTo(vector2(2000,300),1000)
-        self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-2000,400),1000)
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
         self.wait(4500)
         
-        """ COMBAT 3 """
+        # COMBAT 3 
         
         self.SwitchBackground("eternity.jpg",100)
         glob.AudioManager.PlaySound("eternity.mp3")
@@ -884,7 +923,7 @@ class handler:
         self.SwitchBackground("room 2.jpg",4000)
         self.wait(4000)
         
-        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        self.Characters["haato"].MoveTo(vector2(-600,400),2000)
         
         self.ShowMessage("Narrateur","vous rencontrez un ennemie")
         self.ShowCharacter("shrek",["shrek 1.png", "shrek 2.png", "shrek 3.png"],scale=1)
@@ -917,15 +956,16 @@ class handler:
         self.wait(2000)
         self.Characters["shrek"].setChar("shrek 3.png")
         self.ShowMessage("shrek","je ne laisserais  AUCUN d'entre vous sortir d'ici vivant!!!")
-        self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
+        self.Characters["haato"].MoveTo(vector2(-2000,400),1000)
         self.Characters["shrek"].MoveTo(vector2(2000,500),1000)
         
         # phase combat
         
         self.showCombat()
+        glob.AudioManager.PlayMusic("koopas.mp3")
         
         self.ShowCharacter("Face", ["Sface.png"], True)
-        
+    
         self.PvM = 10
         self.Pv = 30
         
@@ -950,8 +990,10 @@ class handler:
             self.wait(500)
             
             self.AttackButton.Fade(1)
+            self.Text.Fade(1)
             self.Wait_Button()
             self.AttackButton.Fade(0)
+            self.Text.Fade(0)
 
             self.hideCombat()
             self.ShowMessage("shrek","Tu vas voir")
@@ -966,61 +1008,174 @@ class handler:
         
         self.hideCombat()
 
-        """phase combat"""
+        # phase combat
         
-        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
-        self.ShowMessage("Anne","Chara Melmou, je coulais te remercier de m'avoir permis de me venger, il a bouffer toute ma famille le fumier, sans toi rien n'aurais été possible.")
-        self.ShowMessage("Chara Melmou","(ne l'écoute pas), il est où le réglisse ?")
-        self.ShowMessage("Anne","...")
+        self.Characters["haato"].MoveTo(vector2(-600,400),2000)
+        self.Characters["Anne"].MoveTo(vector2(600,400),2000)
         
-        
-        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
         self.ShowMessage("Anne","Chara Melmou, je voulais te remercier de m'avoir permis de me venger, il a bouffer toute ma famille le fumier, sans toi rien n'aurais été possible.")
         self.ShowMessage("Chara Melmou","(ne l'écoute pas), il est où le réglisse ?")
         self.ShowMessage("Anne","...")
         self.ShowMessage("Anne","sur ce Chara Melmou, je vais devoir m'en aller et merci encore")
         self.ShowMessage("Chara Melmou","Au revoir..")
         
-        self.Characters["haato"].MoveTo(vector2(-600,0),2000)
+        self.Characters["Anne"].MoveTo(vector2(2000,400),2000)
+        self.Characters["haato"].MoveTo(vector2(-2000,400),2000)
         
         # Sortie du donjon
         
         self.wait(2000)
         
-        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1000)
         self.SwitchBackground("dark forest.jpg",4500)
         self.ShowMessage("Narrateur","Chara Melmou et Walter sortent du donjon et retournent dans la forêt en quête du reglisse")
+        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1500)
         self.ShowMessage("Walter","T'es vraiment sûr de vouloir continuer juste pour du reglisse là ??")
+        self.Characters["haato"].MoveTo(vector2(-600,400),2500)
         self.ShowMessage("Chara Melmou","JUSTE de la reglisse ? Non.. Non... Tâche d'éxecuter mes requetes sans discuter Walter")
         self.ShowMessage("Walter","Excusez moi Chara, suis moi!")
         self.ShowMessage("Walter","Si je me souviens bien c'est quelque part par la")
+        self.Characters["Mr dragon"].MoveTo(vector2(6000,0),3500)
+        self.ShowMessage("Chara Melmou","J'arrive!")
+        self.Characters["haato"].MoveTo(vector2(6000,400),3500)
+        self.wait(1500)
+
 
         # Aperçu du châteu
 
-        self.ShowMessage("Narrateur","Chara Melmou et Walter continuent leurs périple dans la forêt jusqu'a atteindre un mysterieux Chateau")
         self.SwitchBackground("chateau.png",4500)
         glob.AudioManager.PlayMusic("chateau.mp3")
-
+        self.wait(1500)
+        self.ShowMessage("Narrateur","Chara Melmou et Walter continuent leurs périple dans la forêt jusqu'a atteindre un mysterieux Chateau")
+        self.wait(2500)
+        self.Characters["Mr dragon"].MoveTo(vector2(600,0),3500)
+        self.wait(1500)
         self.ShowMessage("Walter","Ah enfin.. Voila le lieu dont je te parlais")
+        self.Characters["haato"].MoveTo(vector2(-600,400),3500)
+        self.wait(1500)
         self.ShowMessage("Chara Melmou","Super Walter ! Ce chateau empeste le reglisse, c'est evident que le voleur ce trouve ici")
         self.ShowMessage("Chara Melmou","Depechons-Nous!!")
+        self.Characters["haato"].MoveTo(vector2(6000,400),3500)
+        self.wait(1000)
+        self.Characters["Mr dragon"].MoveTo(vector2(6000,0),3500)
+
         glob.AudioManager.Stop()
         
         # Pénétration dans le château
         
         self.SwitchBackground("couloir.png",4500)
         glob.AudioManager.PlayMusic("couloir.mp3")
+        self.wait(2500)
 
+        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1500)
+        self.wait(1000)
         self.ShowMessage("Walter","Tu es au courant que ce n'est pas qu'un simple chateau ? Tu as surement plus a perdre qu'a gagner")
+        self.Characters["haato"].MoveTo(vector2(-600,400),1500)
         self.ShowMessage("Walter","Sache que si on franchit cette porte il n'y aura plus aucun retour possible ")
+        self.wait(1500)
         self.ShowMessage("Chara Melmou","Je donnerai ma vie pour ces reglisses.. FONÇONS")
-
-        self.SwitchBackground("hall.png",4500)
-
-
         self.Characters["Mr dragon"].MoveTo(vector2(2000,500),1000)
+        self.Characters["haato"].MoveTo(vector2(6000,400),3500)
+        self.SwitchBackground("hall.png",4500)
+        self.wait(1000)
+        self.Characters["haato"].MoveTo(vector2(-600,400),1500)
+        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1500)
+        self.wait(2000)
+        glob.AudioManager.PlaySound("Mickeyhall.mp3")
+        self.wait(4500)
+        self.Characters["haato"].VertFlip()
+        self.wait(1000)
+        self.Characters["haato"].VertFlip() 
+        self.wait(1000)
+        self.ShowMessage("Chara Melmou","c'etait quoi ça ??")
+        self.ShowMessage("Walter","MERDE.. euh je crois bien que c'est lui. Je vais devoir te laisser ciao")
+        self.Characters["Mr dragon"].MoveTo(vector2(-6000,0),4500)
+        self.wait(1000)
+        self.Characters["haato"].VertFlip()
+        self.wait(1000)
+        self.ShowMessage("Chara Melmou","Mais t'es serieux la?! c'est qui !! Reponds moi")
+        self.wait(1000)
+        self.Characters["haato"].VertFlip()
+        self.wait(1500)
+        self.ShowMessage("Chara Melmou","Bon.. Je crois que je vais devoir me debrouiller seul cette fois ci")
+        self.ShowCharacter("mickey",["M1.png","M2.png"],scale=0.4)
+        self.Characters["mickey"].setChar("M1.png")
+        self.Characters["mickey"].MoveTo(vector2(600,0),2500)
+        self.wait(1000)
+        self.Characters["haato"].VertFlip() 
+        self.wait(1000)
+        self.ShowMessage("Chara Melmou","T'es qui toi ?")
+        self.Characters["mickey"].setChar("M2.png")
+        self.ShowMessage("Evil Mickey","alors c'est toi qui tue mes hommes et qui cherche a derober mes reglisses ?")
+        self.ShowMessage("Evil Mickey","Laisse moi te montrer ce que ca fait de s'attaquer aux mauvaises personnes")
+        glob.AudioManager.Stop()
+        self.Characters["mickey"].MoveTo(vector2(6000,0),1500)
+        self.Characters["haato"].MoveTo(vector2(-6000,0),1500)
+        self.wait(2500)
+        
+       
+        #COMBAT AVEC MICKEY
+        self.showCombat()
+        
+        glob.AudioManager.PlayMusic("epic.mp3")
+        
+        self.ShowCharacter("Face", ["Mface.png"], True)
+    
+        self.PvM = 10
+        self.Pv = 40
+        
+        while self.PvM > 0:
+            self.wait(3000)
+
+            self.hideCombat()
+            self.ShowMessage("Evil Mickey","C'est pas finit !!")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.attack_m2_croix(self.AttackSprites)
+            Attacks.attack_retour(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_m2_horizontal(self.AttackSprites)
+            Attacks.attack_retour(self.AttackSprites)
+            
+            self.wait(5000)
+            
+            self.hideCombat()    
+            self.ShowMessage("Narrateur","A ton tour.")
+            self.ShowMessage("Evil Mickey","Tu ne fais pas le poids !!")  
+            self.showCombat()
+            self.wait(1000)
+            
+            self.AttackButton.Fade(1)
+            self.Text.Fade(1)
+            self.Wait_Button()
+            self.AttackButton.Fade(0)
+            self.Text.Fade(0)
+
+            self.hideCombat()
+            self.ShowMessage("shrek","Tu vas voir")
+            self.showCombat()
+            self.wait(5000)
+            
+            Attacks.attack_m2_croix(self.AttackSprites)
+            Attacks.attack_m2_verical(self.AttackSprites)
+            Attacks.attack_m2_croix(self.AttackSprites)
+            
+        self.RemoveCharacter("Face")
+        
+        glob.AudioManager.Stop()
+        
+        self.hideCombat()
+        
+        glob.AudioManager.PlayMusic("couloir.mp3")
+        self.Characters["haato"].MoveTo(vector2(-600,0),1500)
+        self.wait(1500)
+        self.ShowMessage("il etait coriace celui la")
         self.ShowMessage("Chara Melmou","Il est ou maintenant mon putin de reglisse ??")
         self.ShowMessage("Narrateur","Je crois que tu arrives trop tard..")
+        self.Characters["haato"].VertFlip()
+        self.wait(1000)
+        self.Characters["haato"].VertFlip() 
+        self.wait(1000)
         self.ShowMessage("Chara Melmou","COMMENT CA ?! iLS SONT OU??")
         self.ShowMessage("Narrateur","hmm comment dire..")
         self.ShowMessage("Narrateur","Mickey a bouffé tout les reglisses")
@@ -1028,11 +1183,14 @@ class handler:
         self.ShowMessage("Chara Melmou","J'ai fait tout ca pour rien???")
         self.ShowMessage("Narrateur","OOOOH CALME TOI !")
         self.ShowMessage("Narrateur","Il y a un moyen pour tu recupere ton precieux reglisse, mais ca ne restera pas sans consequence")
+        self.Characters["haato"].MoveTo(vector2(-300,0),1500)
+        self.wait(1000)
         self.ShowMessage("Chara Melmou","Serieux?! Explique!")
         self.ShowMessage("Narrateur","Soit tu recupere le reglisse mais le monde sera totalement detruit")
         self.ShowMessage("Narrateur","Soit t'oublie cette histoire de reglisse et tu rentre chez toi sans faire chier le monde")
+        self.Characters["haato"].MoveTo(vector2(-2000,400),1000)
         conteneur=self.getInput("Quel Choix voulez vous faire (1/2)")
-        if conteneur.lower()!="1":
+        if conteneur.lower()=="1":
             
             #Choix1
             self.ShowMessage("Narrateur","Vous venez de choisir le choix 1: Destruction du monde")
@@ -1044,17 +1202,45 @@ class handler:
             glob.AudioManager.PlaySound("explosion.mp3")
             self.SwitchBackground("earthexplode.png",4500)
 
-            self.ShowMessage("JE SUIS OU LA ?? C'est quoi ce bordel")
-            #Monde dévasté desert Personne a la ronde SAUF du reglisse, puis ont peux lui faire gouter et qu'elle se rende compte qu'au final elle deteste ca puis fini par vomir
+            self.SwitchBackground("reglissespace.png",2500)
+            self.Characters["haato"].MoveTo(vector2(0,400),2000)
+            self.Characters["haato"].VertFlip()
+            self.wait(1000)
+            self.Characters["haato"].VertFlip() 
+            self.wait(1000)
+
+            self.ShowMessage("Chara Melmou","JE SUIS OU LA ?? C'est quoi ce bordel")
+            self.Characters["haato"].MoveTo(vector2(4000,400),3000)
+            self.wait(2500)
+            self.ShowMessage("Narrateur","Bien joué Chara tu as finis par obtenir ce que tu convoité tant !")
+            self.ShowMessage("Narrateur","Mais malheuresement pour elle cette offre avait un prix est mena le monde a sa perte..")
+            self.ShowMessage("Narrateur","Et c'est ainsi que ce termina le recit de Chara Melmou. Le Reglisse de la vérité")
+            self.wait(2000)
+            self.SwitchBackground("end.png",1500)
+            
 
         else:
 
             #Choix2
             self.ShowMessage("Narrateur","Vous venez de choisir le choix 2: Tout ca pour rien")
+            self.SwitchBackground("Maison.jpg",1500)
+            self.Characters["haato"].MoveTo(vector2(-400,400),1000)
+            self.Characters["haato"].VertFlip()
+            self.wait(1000)
+            self.Characters["haato"].VertFlip() 
+            self.wait(1000)
             self.ShowMessage("Chara Melmou","Mais je suis de retour chez moi la ??")
+            self.ShowCharacter("mere",["mere.png"],scale=2.5)
+            self.Characters["mere"].MoveTo(vector2(400,0),1)
             self.ShowMessage("Mere de Chara","MA FILLE !! Tu es enfin rentré.. Mais tu etais ou pendant tout ce temps??")
             self.ShowMessage("Chara Melmou","Bonjour mère, j'avais beaucoup plus important a faire que de rester ici")
             self.ShowMessage("Mere de Chara","QUOI ?! mais tu parles maintenant ???")
+            self.Characters["haato"].MoveTo(vector2(-6000,400),1000)
+            self.Characters["mere"].MoveTo(vector2(6000,400),1000)
+            self.ShowMessage("Narrateur","La mère de Chara retrouva sa fille mais malheuresement celle ci rentra bredouille.")
+            self.ShowMessage("Narrateur","Et c'est ainsi que ce termina le recit de Chara Melmou. Le Reglisse de la vérité")
+            self.wait(1500)
+            self.SwitchBackground("end.png",1500)
             #Mere de chara choqué car de base chara s'exprime comme groot mais a fini par etre corrigé pendant son aventure
 
 
