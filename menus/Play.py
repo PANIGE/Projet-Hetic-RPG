@@ -456,24 +456,6 @@ class handler:
         debug = False
         if debug:
             self.hideCombat()
-<<<<<<< HEAD
-            self.ShowCharacter("flowey", ["idle.png", "sad.png", "smug.png"], True)
-            #glob.AudioManager.PlayMusic("flowey.mp3")
-            self.ShowMessage("Flowey", "Salut !")
-            self.ShowMessage("Flowey", "Je suis Flowey !")
-            self.Characters["flowey"].setChar("smug.png")
-            self.ShowMessage("Flowey", "Flowey la fleur !")
-            self.Characters["flowey"].setChar("idle.png")
-            self.ShowMessage("Flowey", "Je vais t'apprendre comment on joue à ce jeu")
-            self.ShowMessage("Flowey", "Utilise les flèches directionnel de ton clavier pour esquiver mes attaques")
-            self.ShowMessage("Flowey", "La barre rouge qui apparaitra à ta gauche represente tes points de vie (PV)")
-            self.ShowMessage("Flowey", "La bleu qui sera a ta droite represente des points de vie du monstre adverse (PVM)")
-            self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")
-            self.showCombat()
-            Attacks.attack_m2(self.AttackSprites)
-            self.wait(6000)
-           
-=======
             self.SwitchBackground("bg_bar.png",500)
             self.ShowCharacter("haato",["idle.png"],scale=0.6)
             self.wait(2000)
@@ -526,7 +508,6 @@ class handler:
             self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi")
             self.ShowMessage("Narrateur","Vous partez en direction de la foret")
             
->>>>>>> e04971d2567b75701c3c2040b780cfb22c9d539a
                 
             return
         #Intro (Name selection)
