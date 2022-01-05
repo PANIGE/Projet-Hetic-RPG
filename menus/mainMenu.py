@@ -16,8 +16,8 @@ class handler:
         self.disposeTime = 400  # Needed everywhere for the game to know how much time the menu will take to dispose before loading new menu
         pass
 
-    def init(self):
-        title=pText("Le réglisse de la veriter",135,FontStyle.regular , vector2(0,30), Positions.topCentre, Positions.topCentre, Color(255,255,255))
+    def load(self):
+        title=pText("Le réglisse de la verité",135,FontStyle.regular , vector2(0,30), Positions.topCentre, Positions.topCentre, Color(255,255,255))
         glob.foregroundSprites.add(title)
 
         PlayText = pText("Jouer", 100, FontStyle.bold, vector2(0,-5),Positions.centre, Positions.centre, Color(0,0,0))

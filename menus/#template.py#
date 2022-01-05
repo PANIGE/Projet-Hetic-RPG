@@ -12,7 +12,7 @@ import  time
 class handler:
 
 
-    def init(self):
+    def load(self):
         #Define all variables and initial process, ran only one time on Menu Change
         pass
 

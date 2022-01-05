@@ -33,9 +33,9 @@ if __name__ == "__main__": #avoid script to be runned in another script
     pygame.init()
     pygame.font.init()
 
-    wd, ht = 1920, 1080
+    wd, ht = min(pygame.display.Info().current_w, 1920), min(pygame.display.Info().current_h, 1080)
 
-    if pygame.display.Info().current_w == 1920 and pygame.display.Info().current_h == 1080:
+    if pygame.display.Info().current_w <= 1920 and pygame.display.Info().current_h <= 1080:
         flags = HWSURFACE |  DOUBLEBUF | HWACCEL | NOFRAME
     else:
         flags = HWSURFACE |  DOUBLEBUF | HWACCEL
