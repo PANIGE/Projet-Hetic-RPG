@@ -120,6 +120,8 @@ if __name__ == "__main__": #avoid script to be runned in another script
         pygame.quit()
         if not glob.Debug:
             ctypes.windll.user32.MessageBoxW(0, "this game encountered an Error and couldn't continue Working\n\n"+traceback.format_exc()+"\n\nSee logs for further informations", "Delta Dash - Crash", 0)
+        else:
+            raise e
 
     pygame.quit()
     sys.exit(0)
