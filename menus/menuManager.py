@@ -19,7 +19,7 @@ class MenuManager:
                 glob.Scheduler.AddDelayed(disposeTime, glob.foregroundSprites.remove, sprite=sprite)
         self.MenuType = type
         self.activeMenu = self.getMenuFromType(type)
-        self.activeMenu.init()
+        self.activeMenu.load()
 
 
     def getMenuFromType(self, type):

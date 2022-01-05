@@ -14,17 +14,6 @@ from random import randint
 from tools import Attacks
 
 
-"""
-plan:
-    - Trouver un PUTAIN de synopsis
-        - Evil God Mikey
-        - Nom du joueur : Chara Melmou
-        - Dieu Maléfique mickey vole du réglisse a Chara Melmou, donc karamelmou va lui botter son derrière
-        
-    -Tutoriel
-        -Déplacement VN sauf en combat
-"""
-
 class handler:
 
     isInCombat = False
@@ -68,7 +57,7 @@ class handler:
 
         self.Characters = {}
 
-    def init(self):
+    def load(self):
         #Define all variables and initial process, ran only one time on Menu Change
 
         self.Dialog = pSprite(glob.PixelWhite, vector2(0, -40), SkinSource.local, Positions.bottomCentre, Positions.bottomCentre, Color(0,0,0))
@@ -210,7 +199,25 @@ class handler:
             self.gameOver()
             return False
         return True
-        
+
+    def Take_dommage_M(self,quantity):
+        self.PvM-=quantity
+        self.PvM = max(0, self.PvM)
+        self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
+        if self.PvM <= 0:
+            self.hideCombat()
+            return False
+        return True
+
+    def Change_isAwaiting(self):
+        self.isAwaiting=False
+
+    def Wait_Button(self):
+        self.isAwaiting=True
+        self.AttackButton.onClick(self.Change_isAwaiting)
+        while self.isAwaiting :
+            self.wait(10)
+
     def getHurt(self):
         if self.canTakeDamage:
             glob.Scheduler.AddNow(lambda: self._getHurt(), killable=False)
@@ -246,6 +253,7 @@ class handler:
         time.sleep(duration/1000)
 
     def update(self):
+        #Update, what's run each frame, prerequite in menu class
         if self.isInCombat:
             keys=pygame.key.get_pressed()
             y = self.heart.position.y
@@ -270,12 +278,19 @@ class handler:
                     
 
     def dispose(self):
+        #ran before closure
         for s in glob.foregroundSprites.sprites:
             s.FadeTo(0, 400)
         pass
 
 
     def ShowMessage(self, nom, text):
+        """Show Message, set title, and wait for player to input (blocking)
+
+        Args:
+            nom (string): terminal title
+            text (string): the message itself
+        """
         self.ShowInterface()
         self.Cls()
         self.Title.Text(nom)
@@ -286,6 +301,8 @@ class handler:
         self.HideInterface()
 
     def ShowInterface(self):
+        """Show in game terminal
+        """
         self.Dialog.Fade(1)
         self.bgDialog.Fade(1)
         self.Title.Fade(1)
@@ -293,6 +310,8 @@ class handler:
         self.bgDialogTitle.Fade(1)
 
     def HideInterface(self):
+        """Hide in game terminal
+        """
         self.Cls()
         self.Dialog.Fade(0)
         self.bgDialog.Fade(0)
@@ -307,6 +326,8 @@ class handler:
         
         
     def Cls(self):
+        """Clear in game terminal
+        """
         for txt in self.Messages:
             glob.foregroundSprites.remove(txt)
         self.Messages = []
@@ -314,6 +335,12 @@ class handler:
             self.AddMessage(">")
 
     def AddMessage(self, string, color=Color(255,255,255)):
+        """Add a message to the in game terminal
+
+        Args:
+            string (string): the string to show
+            color (Color, optional): Color of the line. Defaults to Color(255,255,255).
+        """
         strLim = 50
         if self.AcceptInput and len(self.Messages) != 0:
             return
@@ -332,6 +359,8 @@ class handler:
         glob.foregroundSprites.add(text)
 
     def waitForEnter(self):
+        """Wait for the player to input Z or Enter (Blocking)
+        """
         self.isAwaiting = True
         self.AwaitSymbol.Fade(1)
         while self.isAwaiting:
@@ -340,6 +369,7 @@ class handler:
         return
 
     def HandleEvents(self, events):
+        #Handle events (prerequite in menu)
         for e in events:
             if e.type is pygame.QUIT:
                 glob.Running = False
@@ -354,6 +384,11 @@ class handler:
                         self.isAwaiting = False
 
     def InputCharacter(self, e):
+        """Handle input character (Do not call elsewhere than handle)
+
+        Args:
+            e (pygame Event): the event
+        """
         keyinput = pygame.key.get_pressed()
         keyPress = e.key
         if keyPress == K_BACKSPACE and len(self.cmd) > 0:
@@ -384,6 +419,11 @@ class handler:
         return d
 
     def UnlockInput(self, text):
+        """Allow inputs from the player to the in game terminal
+
+        Args:
+            text (string): label text to show
+        """
         self.Title.Text("input")
         self.Cls()
         self.AddMessage(text)
@@ -392,6 +432,14 @@ class handler:
         self.isAwaiting = True
 
     def ShowCharacter(self, name, emots, combat=False, scale=1):
+        """Create a character sprite on the field
+
+        Args:
+            name (string): Character folder name
+            emots (string list): Emotes list to load
+            combat (bool, optional): Show in combat interface instead of VN style. Defaults to False.
+            scale (float, optional): scale of the sprite, to fits size. Defaults to 1.
+        """
         sprite=CharacterSprite(name, charPos.Center,emots)
         for s in sprite.sprites.values():
             s.Depth = 3
@@ -403,6 +451,11 @@ class handler:
         glob.foregroundSprites.add(sprite)
 
     def RemoveCharacter(self, key):
+        """Remove character from the field
+
+        Args:
+            key (string): Character folder name
+        """
         sprite = self.Characters[key]
         glob.foregroundSprites.remove(sprite)
         del self.Characters[key]
@@ -412,6 +465,7 @@ class handler:
         Main script, run on another thread to avoid blocking
         """
         debug = False
+
         if debug:
             self.hideCombat()
             self.SwitchBackground("bg_bar.png",500)
@@ -469,9 +523,11 @@ class handler:
             self.ShowMessage("Narrateur","Vous partez en direction de la foret")
             
                 
+
+        if debug:   
             return
         #Intro (Name selection)
-        # self.Attackbutton.fade(0)
+        self.AttackButton.Fade(0)
         self.hideCombat()
         self.ShowMessage("Narrateur", "Bonjour testeur, bienvenue dans \"LE REGLISSE DE LA VÉRITÉ\".")
         self.ShowMessage("Narrateur","Quel est votre nom ?")
@@ -493,35 +549,48 @@ class handler:
         self.ShowMessage("Flowey", "la barre rouge qui apparaitra a ta gauche represente tes point de vie (PV)")
         self.ShowMessage("Flowey", "la bleu qui sera a ta droite represente des point de vie du monstre adverse(PVM)")
         self.ShowMessage("Flowey", "Esquive les attaques du mieux que tu peux !")
-        self.showCombat()
         
-        """ self.ShowMessage("Flowey", "ATENTION, droite !!")
+        self.ShowMessage("Flowey", "ATENTION, droite !!")
+
+
+        # premier combat
+        self.ShowMessage("Flowey", "ATENTION, droite !!")
+
         self.showCombat()
         self.wait(500)
         Attacks.Attack_basic_1(self.AttackSprites)
         self.hideCombat()
-        
+
         self.ShowMessage("Flowey", "ATENTION, gauche !!")
         self.showCombat()
         self.wait(500)
         
         Attacks.Attack_basic_2(self.AttackSprites)
         self.hideCombat()
-        
+
         self.ShowMessage("Flowey", "Prépare toi !")
         self.showCombat()
         self.wait(500)
         
         Attacks.attack_m2(self.AttackSprites)
-        
+
         self.ShowMessage("Flowey", "A toi de m'attaquer")
         self.showCombat()
         self.AttackButton.Fade(1)
         self.Wait_Button.Fade(0)
         
+
+        self.wait(8000)
+        self.hideCombat()
+        self.ShowMessage("Flowey", "A toi de m'attaquer")
+        self.showCombat()
+        self.AttackButton.Fade(1)
+        self.Wait_Button()
+        self.AttackButton.Fade(0)
+
         self.ShowMessage("Flowey", "Assez jouer !!")
         # self.Attackbutton.fade(0)
-        Attacks.attack_cercle(self.AttackSprites) """
+        Attacks.attack_cercle(self.AttackSprites)
         
         self.hideCombat()
         self.RemoveCharacter("flowey")
@@ -560,33 +629,34 @@ class handler:
         self.ShowCharacter("roberu",["roberu.png", "roberu_happy.png", "roberu_bad.png"],scale=0.6)
         self.Characters["roberu"].Move(vector2(600,0))
         self.ShowMessage("Roberu","Boujour je peux vous aider ? ")
-        self.ShowMessage("Narrateur","Vous demander de la reglisse")
+        self.ShowMessage("Narrateur","(Vous demandez du reglisse)")
         self.Characters["roberu"].Move(vector2(600,0))
         self.Characters["roberu"].setChar("roberu_bad.png")
         self.Characters["roberu"].Move(vector2(600,0))
-        self.ShowMessage("Roberu","Désoler on nous a tous voler!!")
+        self.ShowMessage("Roberu","Désolé on nous a tous volé!!")
         glob.AudioManager.PlaySound("nani.mp3")
         self.ShowMessage("Chara Melmou","!!!!!")
         self.Characters["roberu"].setChar("roberu_happy.png")
-        self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
-        self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
-        self.ShowMessage("Roberu","Je sais pas mais cette idiot est partie dans la fôret")
-        self.ShowMessage("Roberu","dans la direction du donjon")
+        self.ShowMessage("Roberu","Mais si vous vouler j'ai du caramel mou")
+        self.ShowMessage("Narrateur","Vous demandez qui a volé la reglisse")
+        self.ShowMessage("Roberu","Je sais pas mais cet idiot est partie dans la fôret")
+        self.ShowMessage("Roberu","vers le donjon")
         self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
         conteneur=self.getInput("Choissiez-vous de continuer?")
         while conteneur.lower()!="o":
-            self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des année")
+            self.ShowMessage("Narrateur","aucun probleme tu sais je peut parler des années")
             self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
             conteneur=self.getInput("Choissiez-vous de continuer?")            
 
         self.ShowMessage("Narrateur","Vous partez en direction de la foret")
         
         self.Characters["roberu"].setChar("roberu_bad.png")
-        self.ShowMessage("Roberu","vous allez vraiment y aller")
-        self.ShowMessage("Roberu","hmmmmmmm tenez")
-        self.ShowMessage("Narrateur","Vous recevez des potion")
-        self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi") 
-        self.ShowMessage("Narrateur","Vous partez en direction de la foret")
+        self.ShowMessage("Roberu","vous allez vraiment y aller ?")
+        self.ShowMessage("Roberu","Hmmmmmmm...")
+        self.ShowMessage("Roberu","Tenez")
+        self.ShowMessage("Narrateur","(Vous recevez des potion)")
+        self.ShowMessage("Narrateur","serieux le jeu est en mode facile ?") 
+        self.ShowMessage("Narrateur","(Vous partez en direction de la foret)")
         glob.AudioManager.Stop()
         self.RemoveCharacter("haato")
         self.RemoveCharacter("roberu")
@@ -596,7 +666,7 @@ class handler:
         self.ShowCharacter("haato",["idle.png"],scale=0.6)
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")  
         self.Characters["haato"].MoveTo(vector2(10000,0),1000)
-        self.ShowMessage("Narrateur","DE L'AUTRE COTE !!!")
+        self.ShowMessage("Narrateur","DE L'AUTRE COTÉ !!!")
         glob.AudioManager.PlaySound("fast-car-sound-effect.mp3")
         self.Characters["haato"].MoveTo(vector2(-10000,0),1000)
         self.wait(3500)
