@@ -887,16 +887,38 @@ class handler:
         self.Characters["haato"].MoveTo(vector2(-600,0),2000)
         
         self.ShowMessage("Narrateur","vous rencontrez un ennemie")
-        self.ShowCharacter("shrek",["shrek 1.png"],scale=1)
-        self.Characters["shrek"].MoveTo(vector2(600,1500),1000)
+        self.ShowCharacter("shrek",["shrek 1.png", "shrek 2.png", "shrek 3.png"],scale=1)
         
+        self.Characters["shrek"].MoveTo(vector2(600,700),1000)
         self.ShowMessage("???","l'ane qu'est ce que tu fais içi !?")
+        self.Characters["shrek"].MoveTo(vector2(2000,700),1000)
+        
+        self.Characters["Anne"].MoveTo(vector2(600,300),1000) 
         self.ShowMessage("Anne","Voici la personne que je voulais que tu élimine, fais attention il est dangereux !!")
+        self.Characters["Anne"].MoveTo(vector2(2000,300),1000)
+       
+        self.Characters["shrek"].MoveTo(vector2(600,700),1000)
+        self.Characters["shrek"].setChar("shrek 2.png")
         self.ShowMessage("???","l'aaaane...? c'est de moi que tu parles !?")
+        self.Characters["shrek"].MoveTo(vector2(2000,500),1000)
+        
+        
+        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1000)
+        self.ShowMessage("Walter","Evitez de l'énerver !!")
+        self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
+        
+        self.Characters["Anne"].MoveTo(vector2(600,300),1000)
         self.ShowMessage("Anne","NON. je parle à une pomme")
+        self.Characters["Anne"].MoveTo(vector2(2000,300),1000)
+        
+        self.Characters["shrek"].MoveTo(vector2(600,700),1000)
+        
+        
         self.wait(2000)
+        self.Characters["shrek"].setChar("shrek 3.png")
         self.ShowMessage("shrek","je ne laisserais  AUCUN d'entre vous sortir d'ici vivant!!!")
         self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
+        self.Characters["shrek"].MoveTo(vector2(2000,500),1000)
 
         """phase combat"""
         
