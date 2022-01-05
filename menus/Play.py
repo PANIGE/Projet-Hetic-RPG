@@ -729,15 +729,6 @@ class handler:
         self.ShowMessage("Anne","Bon pour commencer la personne que tu cherche se trouve *au sommet de la montagne*, mais pour y accéder tu devras passer dans son donjon")
         self.ShowMessage("Anne","le donjon est interminable, et de ce fait je vais de donner un raccourci")
         self.ShowMessage("Anne","tu aurras 3 ennemis à battre dont...")
-        self.wait(2000)
-        self.ShowMessage("Narrateur","réveille TOI !!!")
-        self.wait(500)
-        glob.AudioManager.PlaySound("gifle.mp3")
-        self.wait(1000)
-        self.ShowMessage("Chara Melmou","Aïe !!")
-        self.ShowMessage("Chara Melmou","pourquoi tu m'a frappé !!? je ne dormais pas c'est mes yeux qui sont comme ça")
-        self.ShowMessage("Narrateur","oui. je sais.")
-        self.ShowMessage("Chara Melmou","?..")
         self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
         self.sortie_anne()
         self.sortie("haato")
@@ -797,7 +788,47 @@ class handler:
         """phase combat"""
         #vself.showCombat
         
+        self.PvM = 10
+        self.Pv = 30
         
+        self.showCombat()
+        self.ShowCharacter("Face", ["Dface.png"], True)
+        
+        while self.PvM > 0:
+            self.wait(500)
+
+            self.hideCombat()
+            self.ShowMessage("Mr dragon","ne résiste pas, HUMAIN !!")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.Attack_basic_2(self.AttackSprites)
+            Attacks.attack_retour(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_m2_horizontal(self.AttackSprites)
+            self.wait(2000)
+            
+            self.hideCombat()    
+            self.ShowMessage("Narrateur","A ton tour.")
+            self.ShowMessage("Mr dragon","Tu manques de FORCE !!")  
+            self.showCombat()
+            self.wait(500)
+            
+            self.AttackButton.Fade(1)
+            self.Wait_Button()
+            self.AttackButton.Fade(0)
+            
+            self.hideCombat()
+            self.ShowMessage("Mr dragon","A mon tour.")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.Attack_basic_2(self.AttackSprites)
+            Attacks.attack_m2_verical(self.AttackSprites)
+            Attacks.Attack_basic_2(self.AttackSprites)
+        
+        self.RemoveCharacter("Face")
+        self.hideCombat()
         
         # victoire du combat, + nouveau compagnon
         
@@ -868,7 +899,52 @@ class handler:
         self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
         self.Characters["shrek"].MoveTo(vector2(2000,500),1000)
         
-        """phase combat"""
+        # phase combat
+        self.showCombat()
+        
+        self.ShowCharacter("Face", ["Sface.png"], True)
+        
+        self.PvM = 10
+        self.Pv = 30
+        
+        while self.PvM > 0:
+            self.wait(500)
+
+            self.hideCombat()
+            self.ShowMessage("shrek","AhAhahahah !!")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.Attack_basic_2(self.AttackSprites)
+            Attacks.attack_retour(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_m2_horizontal(self.AttackSprites)
+            self.wait(500)
+            
+            self.hideCombat()    
+            self.ShowMessage("Narrateur","A ton tour.")
+            self.ShowMessage("shrek","Abandonne !!")  
+            self.showCombat()
+            self.wait(500)
+            
+            self.AttackButton.Fade(1)
+            self.Wait_Button()
+            self.AttackButton.Fade(0)
+
+            self.hideCombat()
+            self.ShowMessage("shrek","Tu vas voir")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.attack_m2_croix(self.AttackSprites)
+            Attacks.attack_m2_verical(self.AttackSprites)
+            Attacks.attack_m2_croix(self.AttackSprites)
+            
+        self.RemoveCharacter("Face")
+        
+        self.hideCombat()
+        
+        
         
         self.Characters["haato"].MoveTo(vector2(-600,0),2000)
         self.ShowMessage("Anne","Chara Melmou, je voulais te remercier de m'avoir permis de me venger, il a bouffer toute ma famille le fumier, sans toi rien n'aurais été possible.")
@@ -912,16 +988,60 @@ class handler:
         self.ShowMessage("Chara Melmou","Je donnerai ma vie pour ces reglisses.. FONÇONS")
 
         self.SwitchBackground("hall.png",4500)
+        
+        #combat final
+        
+        self.showCombat()
+        
+        self.ShowCharacter("Face", ["Mface.png"], True)
+        
+        self.PvM = 10
+        self.Pv = 30
+        
+        while self.PvM > 0:
+            self.wait(500)
 
-    
-        
-        
-        
-        
+            self.hideCombat()
+            self.ShowMessage("Evil god mickey","tu n'auras jamais mon réglisse !!")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.attack_retour(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_retour(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_m2_horizontal(self.AttackSprites)
+            self.wait(500)
+            
+            Attacks.attack_m2_verical(self.AttackSprites)
+            
+            
+            self.hideCombat()    
+            self.ShowMessage("Narrateur","A ton tour.")
+            self.ShowMessage("Evil god mickey","Abandonne tu ne fait pas le poids !!")  
+            self.showCombat()
+            self.wait(500)
+            
+            self.AttackButton.Fade(1)
+            self.Wait_Button()
+            self.AttackButton.Fade(0)
 
+            self.hideCombat()
+            self.ShowMessage("Evil god mickey","mange ca")
+            self.showCombat()
+            self.wait(500)
         
-
-
+            Attacks.attack_m2(self.AttackSprites)
+            Attacks.attack_m2_croix(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_m2_croix(self.AttackSprites)
+            Attacks.attack_m2_verical(self.AttackSprites)
+             
+        self.RemoveCharacter("Face")
+             
+        self.hideCombat()
+        
+        # fini
 
 
 
