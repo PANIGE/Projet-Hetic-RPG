@@ -754,6 +754,7 @@ class handler:
         self.ShowMessage("Chara Melmou","?..")
         self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
         self.sortie("haato")
+        self.sortie_anne()
         
         glob.AudioManager.Stop()
         
