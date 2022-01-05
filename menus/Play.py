@@ -832,7 +832,7 @@ class handler:
             Attacks.attack_retour(self.AttackSprites)
             self.wait(500)
             Attacks.attack_m2_horizontal(self.AttackSprites)
-            self.wait(2000)
+            self.wait(5000)
             
             self.hideCombat()    
             self.ShowMessage("Narrateur","A ton tour.")
@@ -919,6 +919,52 @@ class handler:
         self.ShowMessage("shrek","je ne laisserais  AUCUN d'entre vous sortir d'ici vivant!!!")
         self.Characters["haato"].MoveTo(vector2(-2000,0),1000)
         self.Characters["shrek"].MoveTo(vector2(2000,500),1000)
+        
+        # phase combat
+        
+        self.showCombat()
+        
+        self.ShowCharacter("Face", ["Sface.png"], True)
+        
+        self.PvM = 10
+        self.Pv = 30
+        
+        while self.PvM > 0:
+            self.wait(500)
+
+            self.hideCombat()
+            self.ShowMessage("shrek","AhAhahahah !!")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.Attack_basic_2(self.AttackSprites)
+            Attacks.attack_retour(self.AttackSprites)
+            self.wait(500)
+            Attacks.attack_m2_horizontal(self.AttackSprites)
+            self.wait(5000)
+            
+            self.hideCombat()    
+            self.ShowMessage("Narrateur","A ton tour.")
+            self.ShowMessage("shrek","Abandonne !!")  
+            self.showCombat()
+            self.wait(500)
+            
+            self.AttackButton.Fade(1)
+            self.Wait_Button()
+            self.AttackButton.Fade(0)
+
+            self.hideCombat()
+            self.ShowMessage("shrek","Tu vas voir")
+            self.showCombat()
+            self.wait(500)
+            
+            Attacks.attack_m2_croix(self.AttackSprites)
+            Attacks.attack_m2_verical(self.AttackSprites)
+            Attacks.attack_m2_croix(self.AttackSprites)
+            
+        self.RemoveCharacter("Face")
+        
+        self.hideCombat()
 
         """phase combat"""
         
