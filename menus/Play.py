@@ -210,7 +210,17 @@ class handler:
             self.gameOver()
             return False
         return True
-        
+
+    def Take_dommage_M(self,quantity):
+        self.PvM-=quantity
+        self.PvM = max(0, self.PvM)
+        self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
+        if self.PvM <= 0:
+            self.hideCombat()
+            return False
+        return True
+
+
     def getHurt(self):
         if self.canTakeDamage:
             glob.Scheduler.AddNow(lambda: self._getHurt(), killable=False)
@@ -591,17 +601,10 @@ class handler:
         glob.AudioManager.PlaySound("nani.mp3")
         self.ShowMessage("Chara Melmou","!!!!!")
         self.Characters["roberu"].setChar("roberu_happy.png")
-<<<<<<< HEAD
-        self.ShowMessage("Roberu","Mais si vous voulez j'ai du caramel mou")
-        self.ShowMessage("Narrateur","(Vous demandez qui à voler la reglisse)")
-        self.ShowMessage("Roberu","Je sais pas mais cet idiot est partie dans la fôret...")
-        self.ShowMessage("Roberu","Vers le labyrinthe.")
-=======
-        self.ShowMessage("Roberu","Mais si vous vouler jai du caramel mou")
-        self.ShowMessage("Narrateur","Vous demanddez qui a voler la reglisse")
-        self.ShowMessage("Roberu","Je sais pas mais cette idiot est partie dans la fôret")
-        self.ShowMessage("Roberu","dans la direction du donjon")
->>>>>>> e04971d2567b75701c3c2040b780cfb22c9d539a
+        self.ShowMessage("Roberu","Mais si vous vouler j'ai du caramel mou")
+        self.ShowMessage("Narrateur","Vous demandez qui a volé la reglisse")
+        self.ShowMessage("Roberu","Je sais pas mais cet idiot est partie dans la fôret")
+        self.ShowMessage("Roberu","vers le donjon")
         self.ShowMessage("Narrateur","Voulez-vous continuer ? (o/n)")
         conteneur=self.getInput("Choissiez-vous de continuer?")
         while conteneur.lower()!="o":
@@ -612,21 +615,13 @@ class handler:
         self.ShowMessage("Narrateur","Vous partez en direction de la foret")
         
         self.Characters["roberu"].setChar("roberu_bad.png")
-<<<<<<< HEAD
         self.ShowMessage("Roberu","vous allez vraiment y aller ?")
         self.ShowMessage("Roberu","Hmmmmmmm...")
         self.ShowMessage("Roberu","Tenez")
         self.ShowMessage("Narrateur","(Vous recevez des potion)")
         self.ShowMessage("Narrateur","serieux le jeu est en mode facile ?") 
         self.ShowMessage("Narrateur","(Vous partez en direction de la foret)")
-=======
-        self.ShowMessage("Roberu","vous allez vraiment y aller")
-        self.ShowMessage("Roberu","hmmmmmmm tenez")
-        self.ShowMessage("Narrateur","Vous recevez des potion")
-        self.ShowMessage("Narrateur","srx le jeu en mode facile ou quoi") 
-        self.ShowMessage("Narrateur","Vous partez en direction de la foret")
         glob.AudioManager.Stop()
->>>>>>> e04971d2567b75701c3c2040b780cfb22c9d539a
         self.RemoveCharacter("haato")
         self.RemoveCharacter("roberu")
 
