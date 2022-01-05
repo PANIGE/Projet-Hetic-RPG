@@ -555,9 +555,9 @@ class handler:
 
         # premier combat
         self.ShowMessage("Flowey", "ATENTION, droite !!")
-
         self.showCombat()
         self.wait(500)
+        
         Attacks.Attack_basic_1(self.AttackSprites)
         self.hideCombat()
 
@@ -573,12 +573,6 @@ class handler:
         self.wait(500)
         
         Attacks.attack_m2(self.AttackSprites)
-
-        self.ShowMessage("Flowey", "A toi de m'attaquer")
-        self.showCombat()
-        self.AttackButton.Fade(1)
-        self.Wait_Button.Fade(0)
-        
 
         self.wait(8000)
         self.hideCombat()
