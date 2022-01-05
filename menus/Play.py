@@ -913,6 +913,8 @@ class handler:
 
         self.SwitchBackground("hall.png",4500)
 
+
+        self.Characters["Mr dragon"].MoveTo(vector2(2000,500),1000)
         self.ShowMessage("Chara Melmou","Il est ou maintenant mon putin de reglisse ??")
         self.ShowMessage("Narrateur","Je crois que tu arrives trop tard..")
         self.ShowMessage("Chara Melmou","COMMENT CA ?! iLS SONT OU??")
@@ -926,11 +928,8 @@ class handler:
         self.ShowMessage("Narrateur","Soit tu recupere le reglisse mais le monde sera totalement detruit")
         self.ShowMessage("Narrateur","Soit t'oublie cette histoire de reglisse et tu rentre chez toi sans faire chier le monde")
         conteneur=self.getInput("Quel Choix voulez vous faire (1/2)")
-        while conteneur.lower()!="1":
+        if conteneur.lower()!="1":
             
-
-
-
             #Choix1
             self.ShowMessage("Narrateur","Vous venez de choisir le choix 1: Destruction du monde")
             self.ShowMessage("Explosion","Lancement de l'explosion imminente!")
@@ -944,13 +943,15 @@ class handler:
             self.ShowMessage("JE SUIS OU LA ?? C'est quoi ce bordel")
             #Monde dévasté desert Personne a la ronde SAUF du reglisse, puis ont peux lui faire gouter et qu'elle se rende compte qu'au final elle deteste ca puis fini par vomir
 
-        #Choix2
-        self.ShowMessage("Narrateur","Vous venez de choisir le choix 2: Tout ca pour rien")
-        self.ShowMessage("Chara Melmou","Mais je suis de retour chez moi la ??")
-        self.ShowMessage("Mere de Chara","MA FILLE !! Tu es enfin rentré.. Mais tu etais ou pendant tout ce temps??")
-        self.ShowMessage("Chara Melmou","Bonjour mère, j'avais beaucoup plus important a faire que de rester ici")
-        self.ShowMessage("Mere de Chara","QUOI ?! mais tu parles maintenant ???")
-        #Mere de chara choqué car de base chara s'exprime comme groot mais a fini par etre corrigé pendant son aventure
+        else:
+
+            #Choix2
+            self.ShowMessage("Narrateur","Vous venez de choisir le choix 2: Tout ca pour rien")
+            self.ShowMessage("Chara Melmou","Mais je suis de retour chez moi la ??")
+            self.ShowMessage("Mere de Chara","MA FILLE !! Tu es enfin rentré.. Mais tu etais ou pendant tout ce temps??")
+            self.ShowMessage("Chara Melmou","Bonjour mère, j'avais beaucoup plus important a faire que de rester ici")
+            self.ShowMessage("Mere de Chara","QUOI ?! mais tu parles maintenant ???")
+            #Mere de chara choqué car de base chara s'exprime comme groot mais a fini par etre corrigé pendant son aventure
 
 
 
