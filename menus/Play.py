@@ -499,7 +499,7 @@ class handler:
             self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
             self.ShowMessage("Narrateur","Vous parter donc acheter dans une boutique")
             glob.AudioManager.Stop()
-            glob.AudioManager.PlaySound("DSI.mp3")
+            glob.AudioManager.PlayMusic("DSI.mp3")
             self.SwitchBackground("bg_boutique_inside.jpg",4500)
             glob.AudioManager.PlaySound("bruit_de_pas.mp3")
             self.Characters["haato"].MoveTo(vector2(-600,400),4500)
@@ -631,10 +631,10 @@ class handler:
         self.ShowMessage("Chara Melmou","Rééééééégliiiiiiise")
         self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
         self.ShowMessage("Narrateur","Vous parter donc en acheter dans une boutique")
-        
+        glob.AudioManager.Stop()
         glob.AudioManager.PlayMusic("DSI.mp3")
         self.SwitchBackground("bg_boutique_inside.jpg",4500)
-        glob.AudioManager.PlayMusic("DSI.mp3")
+        
         glob.AudioManager.PlaySound("bruit_de_pas.mp3")
         
         self.Characters["haato"].MoveTo(vector2(-600,400),5500)
@@ -967,7 +967,7 @@ class handler:
         self.ShowCharacter("Face", ["Sface.png"], True)
     
         self.PvM = 10
-        self.Pv = 30
+        self.Pv = 60
         
         while self.PvM > 0:
             self.wait(500)
@@ -1121,7 +1121,7 @@ class handler:
         self.ShowCharacter("Face", ["Mface.png"], True)
     
         self.PvM = 10
-        self.Pv = 40
+        self.Pv = 100
         
         while self.PvM > 0:
             self.wait(3000)
