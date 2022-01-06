@@ -474,6 +474,8 @@ class handler:
         Main script, run on another thread to avoid blocking
         """
         debug = False
+        
+        
 
         if debug:
             self.hideCombat()
@@ -605,7 +607,9 @@ class handler:
         self.ShowMessage("Narrateur", "STOOOP")
         self.ShowMessage("Narrateur", "VOUS ETES SERIEUX, IL Y A DES LIMITE A LA REFERENCE!!!!!!!!!!!")
         self.ShowMessage("Narrateur", "C'est bon tu prends tes clics et tes clacs,et tu sors de là!!!!")
-        #fin de l'intro et du tutoriel
+        
+        # fin de l'intro et du tutoriel
+        
         self.SwitchBackground("bg_bar.png",500)
         glob.AudioManager.PlayMusic("tavern.mp3")
         self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
@@ -847,13 +851,15 @@ class handler:
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
         self.RemoveCharacter("Mr dragon")
         
-        # ""phase combat
-        #vself.showCombat
+        """ Les pv du joeur seront augmenté en fonction de la difficulté de l'ennemi, pour facilité le test. """
+        
+        self.showCombat()
         
         self.PvM = 10
         self.Pv = 30
         
-        self.showCombat()
+        glob.AudioManager.PlayMusic("DIO.mp3")
+        
         self.ShowCharacter("Face", ["Dface.png"], True)
         
         while self.PvM > 0:
@@ -892,7 +898,9 @@ class handler:
             Attacks.Attack_basic_2(self.AttackSprites)
         
         self.RemoveCharacter("Face")
+        
         self.AttackButton.Fade(0)
+        
         self.hideCombat()
         
         # victoire du combat, + nouveau compagnon
@@ -914,7 +922,7 @@ class handler:
         self.Characters["Mr dragon"].MoveTo(vector2(2000,0),1000)
         self.wait(4500)
         
-        # COMBAT 3 
+        # COMBAT 2
         
         self.SwitchBackground("eternity.jpg",100)
         glob.AudioManager.PlaySound("eternity.mp3")
@@ -962,6 +970,7 @@ class handler:
         # phase combat
         
         self.showCombat()
+        
         glob.AudioManager.PlayMusic("koopas.mp3")
         
         self.ShowCharacter("Face", ["Sface.png"], True)
@@ -1006,9 +1015,10 @@ class handler:
             
         self.RemoveCharacter("Face")
         
+        glob.AudioManager.Stop()
+        
         self.hideCombat()
-
-        # phase combat
+        
         
         self.Characters["haato"].MoveTo(vector2(-600,400),2000)
         self.Characters["Anne"].MoveTo(vector2(600,400),2000)
@@ -1028,12 +1038,16 @@ class handler:
         
         self.SwitchBackground("dark forest.jpg",4500)
         self.ShowMessage("Narrateur","Chara Melmou et Walter sortent du donjon et retournent dans la forêt en quête du reglisse")
-        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1500)
+        self.wait(1000)
+        
+        self.Characters["Mr dragon"].MoveTo(vector2(600,0),1000)
         self.ShowMessage("Walter","T'es vraiment sûr de vouloir continuer juste pour du reglisse là ??")
         self.Characters["haato"].MoveTo(vector2(-600,400),2500)
+        
         self.ShowMessage("Chara Melmou","JUSTE de la reglisse ? Non.. Non... Tâche d'éxecuter mes requetes sans discuter Walter")
         self.ShowMessage("Walter","Excusez moi Chara, suis moi!")
         self.ShowMessage("Walter","Si je me souviens bien c'est quelque part par la")
+        
         self.Characters["Mr dragon"].MoveTo(vector2(6000,0),3500)
         self.ShowMessage("Chara Melmou","J'arrive!")
         self.Characters["haato"].MoveTo(vector2(6000,400),3500)
@@ -1109,7 +1123,7 @@ class handler:
         self.ShowMessage("Evil Mickey","Laisse moi te montrer ce que ca fait de s'attaquer aux mauvaises personnes")
         glob.AudioManager.Stop()
         self.Characters["mickey"].MoveTo(vector2(6000,0),1500)
-        self.Characters["haato"].MoveTo(vector2(-6000,0),1500)
+        self.Characters["haato"].MoveTo(vector2(-6000,400),1500)
         self.wait(2500)
         
        
@@ -1167,9 +1181,9 @@ class handler:
         self.hideCombat()
         
         glob.AudioManager.PlayMusic("couloir.mp3")
-        self.Characters["haato"].MoveTo(vector2(-600,0),1500)
+        self.Characters["haato"].MoveTo(vector2(-600,400),1500)
         self.wait(1500)
-        self.ShowMessage("il etait coriace celui la")
+        self.ShowMessage("Chara Melmou","il etait coriace celui la")
         self.ShowMessage("Chara Melmou","Il est ou maintenant mon putin de reglisse ??")
         self.ShowMessage("Narrateur","Je crois que tu arrives trop tard..")
         self.Characters["haato"].VertFlip()
@@ -1183,7 +1197,7 @@ class handler:
         self.ShowMessage("Chara Melmou","J'ai fait tout ca pour rien???")
         self.ShowMessage("Narrateur","OOOOH CALME TOI !")
         self.ShowMessage("Narrateur","Il y a un moyen pour tu recupere ton precieux reglisse, mais ca ne restera pas sans consequence")
-        self.Characters["haato"].MoveTo(vector2(-300,0),1500)
+        self.Characters["haato"].MoveTo(vector2(-300,400),1500)
         self.wait(1000)
         self.ShowMessage("Chara Melmou","Serieux?! Explique!")
         self.ShowMessage("Narrateur","Soit tu recupere le reglisse mais le monde sera totalement detruit")
@@ -1198,10 +1212,11 @@ class handler:
             self.ShowMessage("Chara Melmou","Quoi ?? Attend mais je vais y passer moi aussi!!")
             self.ShowMessage("Chara Melmou","STOOOOOP")
             #Les deux images et le son en dessous sont a ajoutés
-            self.SwitchBackground("earth.png",4500)
+            self.SwitchBackground("earth.png",1500)
+            self.wait(2000)
             glob.AudioManager.PlaySound("explosion.mp3")
-            self.SwitchBackground("earthexplode.png",4500)
-
+            self.SwitchBackground("earthexplode.png",1500)
+            self.wait(2000)
             self.SwitchBackground("reglissespace.png",2500)
             self.Characters["haato"].MoveTo(vector2(0,400),2000)
             self.Characters["haato"].VertFlip()
@@ -1210,10 +1225,11 @@ class handler:
             self.wait(1000)
 
             self.ShowMessage("Chara Melmou","JE SUIS OU LA ?? C'est quoi ce bordel")
+            self.wait(4500)
             self.Characters["haato"].MoveTo(vector2(4000,400),3000)
             self.wait(2500)
             self.ShowMessage("Narrateur","Bien joué Chara tu as finis par obtenir ce que tu convoité tant !")
-            self.ShowMessage("Narrateur","Mais malheuresement pour elle cette offre avait un prix est mena le monde a sa perte..")
+            self.ShowMessage("Narrateur","Mais malheuresement pour elle cette offre avait un prix et mena le monde a sa perte..")
             self.ShowMessage("Narrateur","Et c'est ainsi que ce termina le recit de Chara Melmou. Le Reglisse de la vérité")
             self.wait(2000)
             self.SwitchBackground("end.png",1500)
@@ -1239,7 +1255,7 @@ class handler:
             self.Characters["mere"].MoveTo(vector2(6000,400),1000)
             self.ShowMessage("Narrateur","La mère de Chara retrouva sa fille mais malheuresement celle ci rentra bredouille.")
             self.ShowMessage("Narrateur","Et c'est ainsi que ce termina le recit de Chara Melmou. Le Reglisse de la vérité")
-            self.wait(1500)
+            self.wait(2000)
             self.SwitchBackground("end.png",1500)
             #Mere de chara choqué car de base chara s'exprime comme groot mais a fini par etre corrigé pendant son aventure
 
@@ -1248,9 +1264,85 @@ class handler:
 
 
 
+    # EXEMPLE de ce à quoi l'inventaire devais ressembler, à cause d'un certains nombre de bugs il n'aura pas été affiché.
 
+    """class PlayerSYSTEM:
+    def __init__(self, force, defense, pv, inventaires):
+      self.force = force
+      self.defense = defense
+      self.pv = pv
+      self.inventaires = [[],
+                         []]
+      
+    def ajouter(self, item):
+      x = len(item)
+      while x > 0:
+          if item == "potion de soin":
+            self.inventaires[0].append(objet[0])
+            return "vous venez d'obtenir une {}".format(x),self.inventaires
+            
+          if item == "invincibilité":
+            self.inventaires[0].append(objet[1])
+            return "vous venez d'obtenir une {}".format(x),self.inventaires
 
-    
+          elif item == "potion de défense":
+            self.inventaires[1].append(objet[1])
+            return "vous venez d'obtenir une {}".format(x),self.inventaires
+            
+          elif item == "potion mystérieuse":
+            self.inventaires[1].append(objet[2])
+            return "vous venez d'obtenir une {}".format(x),self.inventaires
+
+    def utiliser(self, consommable):
+       f = len(consommable)
+       while f > 0:
+          if consommable == "potion de soin":
+            self.pv = self.pv + 20
+            self.liste_objet = self.inventaires[0].remove(objet[0])
+            
+          if consommable == "potion de défense":
+            self.defense = self.defense + 20
+            self.inventaires = self.inventaires[1].remove(objet[1])
+            
+          if consommable == "potion de soin":
+            self.pv = self.pv + 20
+            self.liste_objet = self.inventaires[0].remove(objet[0])
+  
+       print ("vous avez utiliser ",consommable)
+  
+       return player.inventaires
+
+objet_stat = {
+          0: {"type":"soin",
+              "niveau":"1",
+              "durabilité":"instantané",
+              "description":"procure au joueur un nombre de PV proportionnel au niveau de la potion"},
+          1: {"type":"invincibilité",
+              "niveau":"1",
+              "durabilité":"toute la phase combat",
+              "description":"permet au joueur d'être invincible"},
+          2: {"type":"défense",
+              "niveau":"1",
+              "durabilité":"instantané",
+              "description":"permet au joueur d'optenir une protection suplémentaire en de ses PV"},
+          3: {"type":"poison",
+              "niveau":"inconnue",
+              "durabilité":"inconnue",
+              "description":"potion aux effet inconnue"}
+}
+objet = {
+          0: {"nom": "potion de soin",
+              "réference" : objet_stat[0]},
+          1: {"nom": "cape d'invisibilité",
+              "réference" : objet_stat[1]},
+          2: {"nom": "potion de défense",
+              "réference" : objet_stat[2]},
+          3: {"nom": "potion mystérieuse",
+              "réference" : objet_stat[3]},
+}
+
+inventaire_test = [[objet[0],objet[1]],[objet[2],objet[3]]]"""
+
         
         
 
