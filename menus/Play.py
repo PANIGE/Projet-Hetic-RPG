@@ -47,8 +47,8 @@ class handler:
         self.heart = None
         self.heartHurted = None
         self.canTakeDamage = True
-        self.Pv=20
-        self.MaxPv=20
+        self.Pv=90
+        self.MaxPv=60
         self.PvM=30
         self.MaxPvM=30
         
@@ -176,7 +176,15 @@ class handler:
         self.whiteLifeM.Fade(1)
         self.redLifeM.Fade(1)
         self.MoveHeart(0,205)
-
+        
+    def lose(self):
+        self.wait(2000)
+        if self.Pv <= 0:
+            self.hideCombat()  
+            self.RemoveCharacter("Face")
+            glob.AudioManager.Stop()
+            self.gameOver()
+        
     def MoveHeart(self, x, y):
         width = self.heart.srcImg.get_width()
         height = self.heart.srcImg.get_height()
@@ -191,16 +199,18 @@ class handler:
         self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
 
     def Take_dommage(self,quantity):
+        glob.AudioManager.PlaySound("PUNCH 2.mp3")
         self.Pv-=quantity
         self.Pv = max(0, self.Pv)
         self.redLifeJ.VectorScale(vector2((self.Pv/self.MaxPv)*200,30))
         if self.Pv <= 0:
             self.hideCombat()
-            self.gameOver()
+            # self.gameOver()
             return False
         return True
 
     def Take_dommage_M(self,quantity):
+        glob.AudioManager.PlaySound("DMG.mp3")
         self.PvM-=quantity
         self.PvM = max(0, self.PvM)
         self.redLifeM.VectorScale(vector2((self.PvM/self.MaxPvM)*200,30))
@@ -320,10 +330,43 @@ class handler:
         self.DialogTitle.Fade(0)
         self.bgDialogTitle.Fade(0)
 
+    def go(self):
+        self.SwitchBackground("GO.jpg", 2000)
+        self.wait(2000)
+        self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
+        self.Characters["haato"].Move(vector2(0,400))
+        self.wait(500)
+        
+        self.Characters["haato"].setChar("reflexion 2.png")
+        self.wait(500)
+        self.Characters["haato"].setChar("reflexion 3.png")
+        self.wait(500)
+        self.Characters["haato"].setChar("reflexion 4.png")
+        self.wait(500)
+        self.Characters["haato"].setChar("reflexion 5.png")
+        self.wait(437)
+        self.Characters["haato"].setChar("reflexion 6.png")
+        self.wait(148)
+        self.Characters["haato"].setChar("reflexion 5.png")
+        self.wait(148)
+        self.Characters["haato"].setChar("reflexion 6.png")
+        
+        self.Characters["haato"].VertFlip()
+        self.wait(500)
+        self.Characters["haato"].VertFlip()
+        self.wait(500)
+        self.Characters["haato"].VertFlip()
+        self.wait(2000)
+        self.RemoveCharacter("haato")
+        
+        glob.MenuManager.ChangeMenu(Menus.MainMenu)
+        
+
     def gameOver(self):
         self.isAwaiting= True 
         self.ShowMessage("Narrateur","franchement bravo")
-        glob.MenuManager.ChangeMenu(Menus.MainMenu)
+        self.go()
+
         
         
     def Cls(self):
@@ -482,6 +525,7 @@ class handler:
             self.SwitchBackground("bg_bar.png",500)
             glob.AudioManager.PlayMusic("tavern.mp3")
             self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
+            self.Characters["haato"].MoveTo(vector2(-300,400),50)
             self.wait(2000)
             self.ShowMessage("Narrateur", "Pu***n encore")
             self.ShowMessage("Chara Melmou","Caramel mou?")
@@ -599,7 +643,6 @@ class handler:
         self.Text.Fade(0)
 
         self.ShowMessage("Flowey", "Assez jouer !!")
-        # self.Attackbutton.fade(0)
         Attacks.attack_cercle(self.AttackSprites)
         
         self.hideCombat()
@@ -608,7 +651,7 @@ class handler:
         self.ShowMessage("Narrateur", "VOUS ETES SERIEUX, IL Y A DES LIMITE A LA REFERENCE!!!!!!!!!!!")
         self.ShowMessage("Narrateur", "C'est bon tu prends tes clics et tes clacs,et tu sors de là!!!!")
         
-        # fin de l'intro et du tutoriel
+        #  fin de l'intro et du tutoriel
         
         self.SwitchBackground("bg_bar.png",500)
         glob.AudioManager.PlayMusic("tavern.mp3")
@@ -793,11 +836,11 @@ class handler:
         self.ShowMessage("Chara Melmou","pourquoi tu m'a frappé !!? je ne dormais pas c'est mes yeux qui sont comme ça")
         self.ShowMessage("Narrateur","oui. je sais.")
         self.ShowMessage("Chara Melmou","?..")
-        self.ShowMessage("Anne","Bon je t'espliquerais en chemain allons-y")
+        self.ShowMessage("Anne","Bon je t'expliquerais en chemain allons-y")
         self.sortie("haato")
         self.sortie_anne()
         
-        glob.AudioManager.Stop()
+        # glob.AudioManager.Stop()
         
         self.ShowMessage("Narrateur","(rigole) Chara Melmou et Anne arrivèrent devans la porte du donjon")
         
@@ -855,28 +898,44 @@ class handler:
         
         self.showCombat()
         
-        self.PvM = 10
-        self.Pv = 30
+        self.healing(90)
+        self.Pv=10
+        self.MaxPv=10
+        self.PvM=30
+        self.MaxPvM=30
+
         
         glob.AudioManager.PlayMusic("DIO.mp3")
         
         self.ShowCharacter("Face", ["Dface.png"], True)
         
-        while self.PvM > 0:
+        while self.PvM > 0 or self.Pv > 0:
             self.wait(500)
 
             self.hideCombat()
+            
+            self.lose()
+                
             self.ShowMessage("Mr dragon","ne résiste pas, HUMAIN !!")
             self.showCombat()
             self.wait(500)
             
             Attacks.Attack_basic_2(self.AttackSprites)
+            
+            self.lose()
+        
             Attacks.attack_retour(self.AttackSprites)
             self.wait(500)
+            
+            self.lose()
+            
             Attacks.attack_m2_horizontal(self.AttackSprites)
             self.wait(5000)
+                
+            self.hideCombat()  
             
-            self.hideCombat()    
+            self.lose()
+                
             self.ShowMessage("Narrateur","A ton tour.")
             self.ShowMessage("Mr dragon","Tu manques de FORCE !!")  
             self.showCombat()
@@ -888,13 +947,22 @@ class handler:
             self.AttackButton.Fade(0)
             self.Text.Fade(0)
             
+            if self.PvM <= 0:
+                break
+            
             self.hideCombat()
             self.ShowMessage("Mr dragon","A mon tour.")
             self.showCombat()
             self.wait(500)
             
             Attacks.Attack_basic_2(self.AttackSprites)
+            
+            self.lose()
+            
             Attacks.attack_m2_verical(self.AttackSprites)
+            
+            self.lose()
+            
             Attacks.Attack_basic_2(self.AttackSprites)
         
         self.RemoveCharacter("Face")
@@ -927,6 +995,7 @@ class handler:
         self.SwitchBackground("eternity.jpg",100)
         glob.AudioManager.PlaySound("eternity.mp3")
         self.wait(4000)
+        glob.AudioManager.Stop()
         
         self.SwitchBackground("room 2.jpg",4000)
         self.wait(4000)
@@ -989,18 +1058,31 @@ class handler:
             Attacks.Attack_basic_2(self.AttackSprites)
             Attacks.attack_retour(self.AttackSprites)
             self.wait(500)
+            
+            self.lose()
+            
             Attacks.attack_m2_horizontal(self.AttackSprites)
+            
+            self.lose()
+            
             self.wait(5000)
             
-            self.hideCombat()    
+            self.hideCombat()
+                
             self.ShowMessage("Narrateur","A ton tour.")
             self.ShowMessage("shrek","Abandonne !!")  
+            
             self.showCombat()
+            
             self.wait(500)
             
             self.AttackButton.Fade(1)
             self.Text.Fade(1)
             self.Wait_Button()
+            
+            if self.PvM <= 0:
+                break
+            
             self.AttackButton.Fade(0)
             self.Text.Fade(0)
 
@@ -1010,8 +1092,11 @@ class handler:
             self.wait(500)
             
             Attacks.attack_m2_croix(self.AttackSprites)
+            self.lose()
             Attacks.attack_m2_verical(self.AttackSprites)
+            self.lose()
             Attacks.attack_m2_croix(self.AttackSprites)
+            self.lose()
             
         self.RemoveCharacter("Face")
         
