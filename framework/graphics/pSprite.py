@@ -98,7 +98,7 @@ class pSprite:
 
     def changeImageFromString(self, string, size):
         self.unBlendedImg = pygame.image.fromstring(string, size,
-                                             "RGBA").convert_alpha()
+                                             mode).convert_alpha()
         self.Color(self.color)
 
 

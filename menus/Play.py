@@ -47,8 +47,8 @@ class handler:
         self.heart = None
         self.heartHurted = None
         self.canTakeDamage = True
-        self.Pv=90
-        self.MaxPv=60
+        self.Pv=20
+        self.MaxPv=20
         self.PvM=30
         self.MaxPvM=30
         
@@ -333,31 +333,32 @@ class handler:
     def go(self):
         self.SwitchBackground("GO.jpg", 2000)
         self.wait(2000)
-        self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
-        self.Characters["haato"].Move(vector2(0,400))
-        self.wait(500)
+        # self.GifSprite()
+        # self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
+        # self.Characters["haato"].Move(vector2(0,400))
+        # self.wait(500)
         
-        self.Characters["haato"].setChar("reflexion 2.png")
-        self.wait(500)
-        self.Characters["haato"].setChar("reflexion 3.png")
-        self.wait(500)
-        self.Characters["haato"].setChar("reflexion 4.png")
-        self.wait(500)
-        self.Characters["haato"].setChar("reflexion 5.png")
-        self.wait(437)
-        self.Characters["haato"].setChar("reflexion 6.png")
-        self.wait(148)
-        self.Characters["haato"].setChar("reflexion 5.png")
-        self.wait(148)
-        self.Characters["haato"].setChar("reflexion 6.png")
+        # self.Characters["haato"].setChar("reflexion 2.png")
+        # self.wait(500)
+        # self.Characters["haato"].setChar("reflexion 3.png")
+        # self.wait(500)
+        # self.Characters["haato"].setChar("reflexion 4.png")
+        # self.wait(500)
+        # self.Characters["haato"].setChar("reflexion 5.png")
+        # self.wait(437)
+        # self.Characters["haato"].setChar("reflexion 6.png")
+        # self.wait(148)
+        # self.Characters["haato"].setChar("reflexion 5.png")
+        # self.wait(148)
+        # self.Characters["haato"].setChar("reflexion 6.png")
         
-        self.Characters["haato"].VertFlip()
-        self.wait(500)
-        self.Characters["haato"].VertFlip()
-        self.wait(500)
-        self.Characters["haato"].VertFlip()
-        self.wait(2000)
-        self.RemoveCharacter("haato")
+        # self.Characters["haato"].VertFlip()
+        # self.wait(500)
+        # self.Characters["haato"].VertFlip()
+        # self.wait(500)
+        # self.Characters["haato"].VertFlip()
+        # self.wait(2000)
+        # self.RemoveCharacter("haato")
         
         glob.MenuManager.ChangeMenu(Menus.MainMenu)
         
@@ -594,7 +595,7 @@ class handler:
             self.getInput("Très bien êtes vous sur ? (o/n)")
         self.ShowMessage("Narrateur", "Chara Melmou... c'est pas ouf comme nom, mais bon, on ne choisit pas nos parents")
         self.ShowCharacter("flowey", ["idle.png", "sad.png", "smug.png"], True)
-        #glob.AudioManager.PlayMusic("flowey.mp3")
+        glob.AudioManager.PlayMusic("flowey.mp3")
         self.ShowMessage("Flowey", "Salut !")
         self.ShowMessage("Flowey", "Je suis Flowey !")
         self.Characters["flowey"].setChar("smug.png")
@@ -656,14 +657,17 @@ class handler:
         self.SwitchBackground("bg_bar.png",500)
         glob.AudioManager.PlayMusic("tavern.mp3")
         self.ShowCharacter("haato",["happy.png","angry.png","reflexion 1.png","reflexion 2.png","reflexion 3.png","reflexion 4.png","reflexion 5.png","reflexion 6.png","sad.png"],scale=1.4)
+        self.Characters["haato"].MoveTo(vector2(600,400))
         self.wait(2000)
         
         self.ShowMessage("Narrateur", "Pu***n encore")
+        self.Characters["haato"].setChar("reflexion 1.png")
         self.ShowMessage("Chara Melmou","Caramel mou?")
         self.ShowMessage("Narrateur","...")
         self.ShowMessage("Narrateur","Ooooook attendez")
         
         glob.AudioManager.PlaySound("clic_souri.mp3")
+        self.Characters["haato"].setChar("reflexion 4.png")
         glob.AudioManager.PlaySound("clic_souri.mp3")
         glob.AudioManager.PlaySound("machine_effect.mp3")
         
@@ -674,6 +678,7 @@ class handler:
         self.ShowMessage("Narrateur","C'est bon on recommence")
         self.ShowMessage("Chare Melmou","Je suis Chara Melmou ")
         self.ShowMessage("Narrateur","C'est bon on peut commencer")
+        self.Characters["haato"].setChar("happy.png")
         self.ShowMessage("Narrateur","Vous êtes Chara Melmou. Vous êtes dans une auberge, après avoir bien manger vous décidez d'aller acheter du réglisse")
         self.ShowMessage("Chara Melmou","Rééééééégliiiiiiise")
         self.ShowMessage("Narrateur","Tais-toi j'introduis le scénario!!!!!!!!!!!")
@@ -899,8 +904,8 @@ class handler:
         self.showCombat()
         
         self.healing(90)
-        self.Pv=10
-        self.MaxPv=10
+        self.Pv= 40
+        self.MaxPv= 40
         self.PvM=30
         self.MaxPvM=30
 
@@ -1042,10 +1047,12 @@ class handler:
         
         glob.AudioManager.PlayMusic("koopas.mp3")
         
-        self.ShowCharacter("Face", ["Sface.png"], True)
+        self.ShowCharacter("Face", ["Sface.png"], True,scale=0.6)
     
         self.PvM = 10
-        self.Pv = 60
+        self.MaxPvM= 10
+        self.Pv = 40
+        self.MaxPv= 40
         
         while self.PvM > 0:
             self.wait(500)
@@ -1056,13 +1063,14 @@ class handler:
             self.wait(500)
             
             Attacks.Attack_basic_2(self.AttackSprites)
-            Attacks.attack_retour(self.AttackSprites)
-            self.wait(500)
-            
             self.lose()
             
-            Attacks.attack_m2_horizontal(self.AttackSprites)
+            Attacks.attack_retour(self.AttackSprites)
+            self.lose()
             
+            self.wait(500)
+            
+            Attacks.attack_m2_horizontal(self.AttackSprites)
             self.lose()
             
             self.wait(5000)
@@ -1093,8 +1101,10 @@ class handler:
             
             Attacks.attack_m2_croix(self.AttackSprites)
             self.lose()
+            
             Attacks.attack_m2_verical(self.AttackSprites)
             self.lose()
+            
             Attacks.attack_m2_croix(self.AttackSprites)
             self.lose()
             
@@ -1196,7 +1206,7 @@ class handler:
         self.Characters["haato"].VertFlip()
         self.wait(1500)
         self.ShowMessage("Chara Melmou","Bon.. Je crois que je vais devoir me debrouiller seul cette fois ci")
-        self.ShowCharacter("mickey",["M1.png","M2.png"],scale=0.4)
+        self.ShowCharacter("mickey",["M1.png","M2.png"],scale=0.7)
         self.Characters["mickey"].setChar("M1.png")
         self.Characters["mickey"].MoveTo(vector2(600,0),2500)
         self.wait(1000)
@@ -1219,8 +1229,10 @@ class handler:
         
         self.ShowCharacter("Face", ["Mface.png"], True)
     
-        self.PvM = 10
-        self.Pv = 100
+        self.MaxPvM = 50
+        self.PvM = 50
+        self.MaxPv = 30
+        self.Pv = 30
         
         while self.PvM > 0:
             self.wait(3000)
@@ -1231,22 +1243,37 @@ class handler:
             self.wait(500)
             
             Attacks.attack_m2_croix(self.AttackSprites)
+            self.lose()
+            
             Attacks.attack_retour(self.AttackSprites)
+            self.lose()
+            
             self.wait(500)
+            
             Attacks.attack_m2_horizontal(self.AttackSprites)
+            self.lose()
+            
             Attacks.attack_retour(self.AttackSprites)
+            self.lose()
             
             self.wait(5000)
             
-            self.hideCombat()    
+            self.hideCombat()  
+              
             self.ShowMessage("Narrateur","A ton tour.")
             self.ShowMessage("Evil Mickey","Tu ne fais pas le poids !!")  
+            
             self.showCombat()
+            
             self.wait(1000)
             
             self.AttackButton.Fade(1)
             self.Text.Fade(1)
             self.Wait_Button()
+            
+            if self.PvM <= 0:
+                break
+            
             self.AttackButton.Fade(0)
             self.Text.Fade(0)
 
@@ -1256,8 +1283,13 @@ class handler:
             self.wait(5000)
             
             Attacks.attack_m2_croix(self.AttackSprites)
+            self.lose()
+            
             Attacks.attack_m2_verical(self.AttackSprites)
+            self.lose()
+            
             Attacks.attack_m2_croix(self.AttackSprites)
+            self.lose()
             
         self.RemoveCharacter("Face")
         
